@@ -1,6 +1,4 @@
-library("R6")
-
-TaxonResultExtractor <- R6Class("TaxonResultExtractor", public = list(
+TaxonResultExtractor <- R6::R6Class("TaxonResultExtractor", public = list(
   update_prefix = NULL,
   results = NULL,
   result_names = NULL,
@@ -33,7 +31,7 @@ TaxonResultExtractor <- R6Class("TaxonResultExtractor", public = list(
     backtransformed_results <- list()
     for (prefixed_lht in names(lht_names)) {
       result_key <- lht_names[[prefixed_lht]]
-      result_value <- as.numeric(self$results[result_key, ])
+      result_value <- as.numeric(self$results[result_key,])
       back_func <- self$back_transform_matrix[[result_key]]
       backtransformed_results[[prefixed_lht]] <- back_func(result_value)
     }

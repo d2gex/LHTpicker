@@ -1,9 +1,4 @@
-library("R6")
-library("stringr")
-library("FishLife")
-
-
-TaxonExtractor <- R6Class("TaxonExtractor", public = list(
+TaxonExtractor <- R6::R6Class("TaxonExtractor", public = list(
 
   master_db = NULL,
   species_name = NULL,

@@ -1,8 +1,4 @@
-library("R6")
-source("lht_prediction/taxon_result_extractor.R")
-
-
-TaxaResultExtractor <- R6Class("TaxaResultExtractor", public = list(
+TaxaResultExtractor <- R6::R6Class("TaxaResultExtractor", public = list(
   update_prefix = NULL,
   result_names = NULL,
   back_transform_matrix = NULL,

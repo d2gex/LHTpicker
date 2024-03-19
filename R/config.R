@@ -1,6 +1,4 @@
-library("R6")
-
-FishlifeLHTNameSpace <- R6Class("FishlifeLHTNameSpace", public = list(
+FishlifeLHTNameSpace <- R6::R6Class("FishlifeLHTNameSpace", public = list(
 
   updated_prefix = NULL,
   lht_names = NULL,

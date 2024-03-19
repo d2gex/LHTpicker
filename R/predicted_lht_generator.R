@@ -1,8 +1,4 @@
-library("R6")
-source("lht_prediction/taxon_extractor.R")
-source("lht_prediction/taxon_predictor.R")
-
-PredictedLHTGenerator <- R6Class("PredictedLHTGenerator", public = list(
+PredictedLHTGenerator <- R6::R6Class("PredictedLHTGenerator", public = list(
 
   master_db = NULL,
   lht_predicting_matrix = NULL,
