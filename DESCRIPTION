@@ -18,4 +18,6 @@ Imports:
     dplyr
 Remotes:
     James-Thorson-NOAA/FishLife
-
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
