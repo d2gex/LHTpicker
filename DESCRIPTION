@@ -10,3 +10,12 @@ Authors@R: person(given = "Dan",
 Maintainer: Dan G <dgarcia@iim.csic.es>
 Description: A FishLife thin wrapper to streamline extraction and/or prediction updates of species life history traits (LHTs)/
 License: MIT License
+Depends:
+    R (>= 4.2.2)
+Imports:
+    R6,
+    stringr,
+    dplyr
+Remotes:
+    James-Thorson-NOAA/FishLife
+
