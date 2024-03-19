@@ -1,0 +1,12 @@
+Package: LHTPicker
+Type: Package
+Title: Fishlife LHT Picker
+Version: 1.0
+Date: 2024-03-11
+Authors@R: person(given = "Dan",
+             family = "G",
+             role = c("aut", "cre"),
+             email = "dgarcia@iim.csic.es")
+Maintainer: Dan G <dgarcia@iim.csic.es>
+Description: A FishLife thin wrapper to streamline extraction and/or prediction updates of species life history traits (LHTs)/
+License: MIT License
