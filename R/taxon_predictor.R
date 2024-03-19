@@ -1,8 +1,4 @@
-library("R6")
-library("FishLife")
-source("utils.R")
-
-TaxonPredictor <- R6Class("TaxonPredictor", public = list(
+TaxonPredictor <- R6::R6Class("TaxonPredictor", public = list(
 
   master_db = NULL,
   estimated_lhts = NULL,
@@ -36,7 +32,7 @@ TaxonPredictor <- R6Class("TaxonPredictor", public = list(
     # // @formatter:on
     new_lht_matrix <- self$generate_new_lht_matrix()
     return(
-      update_prediction(
+      FishLife::update_prediction(
         predmean_j = self$estimated_lhts[self$columns_of_interest], # Estimated LHTs 'as is'
         # Estimated LHT covariance for specific species 'as is'
         predcov_jj = self$estimated_lht_cov[self$columns_of_interest, self$columns_of_interest],
@@ -46,6 +42,16 @@ TaxonPredictor <- R6Class("TaxonPredictor", public = list(
     )
   }
 ), private = list(
+  create_empty_dataframe = function(col_names) {
+    df <- data.frame(matrix(nrow = 0, ncol = length(col_names)))
+    colnames(df) <- col_names
+    return(df)
+  },
+  df_to_named_matrix = function(data) {
+    mat <- as.matrix(data[, -1])
+    rownames(mat) <- data[[1]]
+    return(mat)
+  },
   list_of_vectors_to_dataframe = function(lht_list) {
     if (length(unique(lengths(lht_list))) != 1) {
       stop("All nested vectors must have the same length")
@@ -56,7 +62,7 @@ TaxonPredictor <- R6Class("TaxonPredictor", public = list(
 
     func_space_ <- func_space[names(data)]
     return(data %>%
-             mutate(across(names(func_space_), ~func_space_[[cur_column()]](.x)))
+             dplyr::mutate(dplyr::across(names(func_space_), ~func_space_[[dplyr::cur_column()]](.x)))
     )
   },
   build_matrix_new_lhts = function(new_lhts_df, colnames) {
@@ -65,9 +71,9 @@ TaxonPredictor <- R6Class("TaxonPredictor", public = list(
     # // @formatter:on
     new_lht_colnames <- colnames(new_lhts_df)
     complement_cols <- setdiff(colnames, new_lht_colnames)
-    empty_df <- create_empty_dataframe(complement_cols)
+    empty_df <- private$create_empty_dataframe(complement_cols)
     empty_df[nrow(new_lhts_df),] <- NA
     new_lhts_df <- cbind(new_lhts_df, empty_df)
-    return(df_to_named_matrix(new_lhts_df))
+    return(private$df_to_named_matrix(new_lhts_df))
   }
 ))
