@@ -70,7 +70,7 @@ PredictedLHTGenerator <- R6::R6Class("PredictedLHTGenerator", public = list(
       taxon_extractor <- TaxonExtractor$new(self$master_db, ind_species)
       taxon_details <- taxon_extractor$extract()
       if (is.null(taxon_details)) {
-        stop(paste("Unable to find life hisotry traits for taxa", ind_species))
+        stop(paste("Unable to find life history traits for taxa", ind_species))
       }
       taxon_predictor <- TaxonPredictor$new(self$master_db,
                                             taxon_details$estimated_lhts,
