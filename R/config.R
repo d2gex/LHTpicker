@@ -12,26 +12,26 @@ fishlife_context <- FishlifeLHTNameSpace$new()
 # User-defined LHT names to fishlife's nomencluture for input LHTs
 fishlife_context$updated_prefix <- 'updated'
 fishlife_context$lht_names <- list(
-  Linf = "log.length_infinity.",
-  Winf = "log.weight_infinity.",
-  K = "log.growth_coefficient.",
-  M = "log.natural_mortality.",
-  L50 = "log.length_maturity.",
-  Amax = "log.age_max.",
-  Amat = "log.age_maturity.",
+  Linf = "log(length_infinity)",
+  Winf = "log(weight_infinity)",
+  K = "log(growth_coefficient)",
+  M = "log(natural_mortality)",
+  L50 = "log(length_maturity)",
+  Amax = "log(age_max)",
+  Amat = "log(age_maturity)",
   Temperature = "temperature"
 )
 # Function conversion required for each parameter. See that the left hand side variables coincnide with
 # the right hand side (names) of your LHTNames list
 fishlife_context$transform_function <- list(
-  log.length_infinity. = log,
-  log.weight_infinity. = log,
-  log.growth_coefficient. = log,
-  log.natural_mortality. = log,
-  log.length_maturity. = log,
-  log.age_max. = log,
-  log.age_maturity. = log,
-  temperature = base::identity
+  "log(length_infinity)" = log,
+  "log(weight_infinity)" = log,
+  "log(growth_coefficient)" = log,
+  "log(natural_mortality)" = log,
+  "log(length_maturity)" = log,
+  "log(age_max)" = log,
+  "log(age_maturity)" = log,
+  "temperature" = base::identity
 )
 # User-defined LHT names to fishlife's nomencluture for output LHTs
 fishlife_context$lht_results <- list(
