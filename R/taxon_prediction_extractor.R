@@ -1,4 +1,4 @@
-#' Single Taxon Exctrator class
+#' Single Taxon Prediction Extractor class
 #'
 #' @description
 #' Class that extracts and transform predicted values of LHTs for a single species obtained from FishLife
