@@ -15,7 +15,7 @@ test_that("Predict LHT for a specific taxa", {
   fishlife_lht_names <- unlist(unname(fishlife_context$lht_names))
   names(new_lhts) <- fishlife_lht_names
 
-  t_predictor <- TaxonPredictor$new(
+  t_predictor <- TaxonLHTPredictor$new(
     testing_db,
     estimated_lhts,
     estimated_covariance,

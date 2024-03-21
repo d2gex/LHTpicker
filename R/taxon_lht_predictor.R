@@ -1,4 +1,8 @@
-TaxonPredictor <- R6::R6Class("TaxonPredictor", public = list(
+#' Single Taxon LHT Predictor class
+#'
+#' @description
+#' Class that given some LHTs will fetch their predicted version according to FishLife covariance
+TaxonLHTPredictor <- R6::R6Class("TaxonLHTPredictor", public = list(
 
   master_db = NULL,
   estimated_lhts = NULL,
@@ -28,7 +32,7 @@ TaxonPredictor <- R6::R6Class("TaxonPredictor", public = list(
   # // @formatter:off
   #' @description
   #' Generate the new LHT matrix in shape and mathematical domain expected by Fishlife
-  #' @returns
+  #' @returns matrix-form LHT values to be passed on to FishLife
   #' @export
   # // @formatter:on
   generate_new_lht_matrix = function() {
@@ -77,7 +81,7 @@ TaxonPredictor <- R6::R6Class("TaxonPredictor", public = list(
   },
   # // @formatter:off
   #' @description
-  #' Build the new LHT matrix in the expected shape
+  #' Build the new LHT matrix in the expected shape by FishLife
   # // @formatter:on
   build_matrix_new_lhts = function(new_lhts_df, colnames) {
     new_lht_colnames <- colnames(new_lhts_df)

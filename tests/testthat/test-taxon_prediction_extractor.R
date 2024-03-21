@@ -13,7 +13,7 @@ test_that("Extraction and backtransformation of predicted LHT values", {
   names(new_lhts) <- fishlife_lht_names
 
   # (2)... Predict ...
-  t_predictor <- TaxonPredictor$new(
+  t_predictor <- TaxonLHTPredictor$new(
     testing_db,
     estimated_lhts,
     estimated_covariance,
