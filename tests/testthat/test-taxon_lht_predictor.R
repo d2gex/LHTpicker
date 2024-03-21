@@ -10,16 +10,18 @@ test_that("Predict LHT for a specific taxa", {
   estimated_lhts <- t.luscus_details$estimated_lhts
   estimated_covariance <- t.luscus_details$estimated_covariance
   # Provide LHT values following fishlife's name convention
-  new_lhts <- testing_sample_data[testing_sample_data$species == 'Trisopterus luscus',]
-  new_lhts <- new_lhts[-1] # forget about species
-  fishlife_lht_names <- unlist(unname(fishlife_context$lht_names))
-  names(new_lhts) <- fishlife_lht_names
+  input_lhts <- testing_sample_data[testing_sample_data$species == 'Trisopterus luscus',]
+  input_lhts <- input_lhts[-1] # forget about species
+  # Order both data structures to avoid mismatching of values
+  input_lhts <- input_lhts %>% select(order(colnames(input_lhts)))
+  lht_names <- fishlife_context$lht_names[order(names(fishlife_context$lht_names))]
+  names(input_lhts) <- unlist(unname(lht_names))
 
   t_predictor <- TaxonLHTPredictor$new(
     testing_db,
     estimated_lhts,
     estimated_covariance,
-    new_lhts,
+    input_lhts,
     fishlife_context$transform_function
   )
   new_lht_matrix <- t_predictor$generate_new_lht_matrix()

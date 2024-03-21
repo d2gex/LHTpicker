@@ -9,17 +9,17 @@ TaxonLHTPredictor <- R6::R6Class("TaxonLHTPredictor", public = list(
   estimated_lht_cov = NULL,
   new_lhts = NULL,
   func_domains = NULL,
-    #' @field common_columns_ds common columns across the underlying data structure of FishLife. Taxa's LHT
-    #'    could end up having additional fields that the overall covariance matrix does not support.
+      #' @field common_columns_ds common columns across the underlying data structure of FishLife. Taxa's LHT
+      #'    could end up having additional fields that the overall covariance matrix does not support.
   common_columns_ds = NULL,
-    #' @description
-    #'
-    #' @param master_db Fishlife database
-    #' @param estimated_lhts taxon's LHT numeric vector as fetched from Fishlife.
-    #' @param estimated_lht_conv taxon's covariance matrix as fetched from Fishlife
-    #' @param new_lhts predicting LHT list which names must conform to FishLife's expectations
-    #' @param func_domains list of transforming function which names must conform to FishLife's expectations
-    #' @export
+      #' @description
+      #'
+      #' @param master_db Fishlife database
+      #' @param estimated_lhts taxon's LHT numeric vector as fetched from Fishlife.
+      #' @param estimated_lht_conv taxon's covariance matrix as fetched from Fishlife
+      #' @param new_lhts predicting LHT list which names must conform to FishLife's expectations
+      #' @param func_domains list of transforming function which names must conform to FishLife's expectations
+      #' @export
   initialize = function(master_db, estimated_lhts, estimated_lht_cov, new_lhts, func_domains) {
 
     self$master_db <- master_db
@@ -55,8 +55,8 @@ TaxonLHTPredictor <- R6::R6Class("TaxonLHTPredictor", public = list(
         predmean_j = self$estimated_lhts[self$common_columns_ds], # Estimated LHTs 'as is'
         # Estimated LHT covariance for specific species 'as is'
         predcov_jj = self$estimated_lht_cov[self$common_columns_ds, self$common_columns_ds],
-        obscov_jj = self$master_db$obsCov_jj,  # Overall covariance among LHTs
-        Ynew_ij = new_lht_matrix # new LHT values from which to infer the new ones
+        obscov_jj = self$master_db$obsCov_jj[self$common_columns_ds, self$common_columns_ds],  # Overall covariance among LHTs
+        Ynew_ij = new_lht_matrix[, self$common_columns_ds] # new LHT values from which to infer the new ones
       )
     )
   }
