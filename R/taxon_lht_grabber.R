@@ -1,14 +1,14 @@
-#' Single Taxon Extractor class
+#' Single Taxon LHT GRABBER class
 #'
 #' @description
-#' Class that abstracts away the underlying FishLife database structure and extract the details of a given taxon
-TaxonExtractor <- R6::R6Class("TaxonExtractor", public = list(
+#' Class that abstracts away the underlying FishLife dynamics and grab the details of a given taxon
+TaxonLHTGrabber <- R6::R6Class("TaxonLHTGrabber", public = list(
 
   master_db = NULL,
   taxon = NULL,
   # @formatter:off
   #'@description
-  #' Initialise Taxon Extractor class
+  #' Initialise Taxon LHT Grabber class
   #'
   #' @param master_db Fishlife database
   #' @param taxon string holding the taxon name
@@ -20,7 +20,7 @@ TaxonExtractor <- R6::R6Class("TaxonExtractor", public = list(
   },
   # @formatter:off
   #'@description
-  #' Extract the sought taxon details
+  #' Fetch the sought taxon details
   #'
   #' @returns A list with three elements:
   #'    a) The database unique identifier for the sought taxon
