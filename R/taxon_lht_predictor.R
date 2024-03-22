@@ -42,8 +42,8 @@ TaxonLHTPredictor <- R6::R6Class("TaxonLHTPredictor", inherit = MixinUtilities, 
   generate_new_lht_matrix = function() {
 
     # Convert list of lhts to dataframe and applied logs where required.
-    new_lhts <- private$list_of_vectors_to_dataframe(self$new_lhts)
-    new_lhts <- private$apply_func_to_df(new_lhts, self$func_domains)
+    new_lhts <- self$list_of_vectors_to_dataframe(self$new_lhts)
+    new_lhts <- self$apply_func_to_df(new_lhts, self$func_domains)
     # Build lht matrix with values and NA where required
     new_lhts <- private$build_matrix_new_lhts(new_lhts, self$common_columns_ds)
     return(new_lhts)
@@ -65,19 +65,6 @@ TaxonLHTPredictor <- R6::R6Class("TaxonLHTPredictor", inherit = MixinUtilities, 
     )
   }
 ), private = list(
-  list_of_vectors_to_dataframe = function(lht_list) {
-    if (length(unique(lengths(lht_list))) != 1) {
-      stop("All nested vectors must have the same length")
-    }
-    return(as.data.frame(do.call(cbind, lht_list)))
-  },
-  apply_func_to_df = function(data, func_space) {
-
-    func_space_ <- func_space[names(data)]
-    return(data %>%
-             dplyr::mutate(dplyr::across(names(func_space_), ~func_space_[[dplyr::cur_column()]](.x)))
-    )
-  },
   # // @formatter:off
   #' @description
   #' Build the new LHT matrix in the expected shape by FishLife
