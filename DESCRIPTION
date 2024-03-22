@@ -8,7 +8,7 @@ Authors@R: person(given = "Dan",
              role = c("aut", "cre"),
              email = "dgarcia@iim.csic.es")
 Maintainer: Dan G <dgarcia@iim.csic.es>
-Description: A FishLife thin wrapper to streamline extraction and/or prediction updates of species life history traits (LHTs)/
+Description: A FishLife thin wrapper to streamline the update life history traits (LHTs) for multiple taxa
 License: MIT License
 Depends:
     R (>= 4.2.2)
