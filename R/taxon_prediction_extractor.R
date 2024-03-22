@@ -25,7 +25,7 @@ TaxonPredictionExtractor <- R6::R6Class("TaxonPredictionExtractor", public = lis
   },
   # // @formatter:off
   #' @description
-  #' Extract and backtransform the predicted LHT values from FishLife
+  #' Extract and backtransform the updated LHT values from FishLife
   #'
   #' @returns a dataframe with backtransformed LHT values
   # // @formatter:on
