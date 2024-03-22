@@ -1,25 +1,49 @@
+#' Multiple Predicted LHT Generator class
+#'
+#' @description
+#' Class that allows the streamline-generation of predicted LHTs given new data.
 PredictedLHTGenerator <- R6::R6Class("PredictedLHTGenerator", public = list(
 
   master_db = NULL,
-  lht_predicting_matrix = NULL,
-  func_conversion_matrix = NULL,
+  predicting_lht_df = NULL,
+  func_domains = NULL,
   lht_names = NULL,
-  initialize = function(master_db, lht_predicting_matrix, func_conversion_matrix, lht_names) {
+  # // @formatter:off
+  #' @description
+  #' Initialise the Predicted LHT Generator class
+  #'
+  #' @param master_db Fishlife database
+  #' @param predicting_lht_df dataframe providing the taxon details and their predicting LHT values
+  #' @param func_domains list of transforming function which names must conform to FishLife's expectations
+  #' @param lht_names list of user-defined LHT names associated with their FishLife's counterparts
+  #' @export
+  # // @formatter:on
+  initialize = function(master_db, predicting_lht_df, func_domains, lht_names) {
     self$master_db <- master_db
-    self$lht_predicting_matrix <- lht_predicting_matrix
-    self$func_conversion_matrix <- func_conversion_matrix
+    self$predicting_lht_df <- predicting_lht_df
+    self$func_domains <- func_domains
     self$lht_names <- lht_names
   },
+  # // @formatter:off
+  #' @description
+  #'
+  #' Update the given LHTs per taxon according to the new predicted value yielded by FishLfe
+  #' @returns list of LHT matrices, where each name in the list corresponds a single taxon
+  #' @export
+  # // @formatter:on
   predict = function() {
-    all_species_local_lhts <- private$build_species_new_lhts()
-    predicted_matrices <- private$generate_predicted_matrices(all_species_local_lhts)
+    all_species_local_lhts <- private$build_taxa_predicting_lhts()
+    predicted_matrices <- private$generate_taxa_predicted_matrices(all_species_local_lhts)
     return(predicted_matrices)
   }
 ), private = list(
+  # // @formatter:off
+  #' @description
+  #' Convert a dataframe into a list of rows removing those columns per taxon that contain NA
+  #'
+  #' @returns a unnamed list of LHT values per taxon
+  # // @formatter:on
   df_to_not_na_list = function(df) {
-    # // @formatter:off
-    #' Convert a dataframe into a list of rows removing those columns per species that contain NA
-    # // @formatter:on
     return(
       lapply(split(df, 1:nrow(df)), function(x) {
         x <- x %>%
@@ -28,10 +52,13 @@ PredictedLHTGenerator <- R6::R6Class("PredictedLHTGenerator", public = list(
       })
     )
   },
+  # // @formatter:off
+  #' @description
+  #' Given a list of LHTs it renames each variable into the expected FishLife names
+  #'
+  #' @returns renamed list of lht which names conform to Fishlife's expected patterns
+  # // @formatter:on
   transcribe_lhts = function(lhts) {
-    # // @formatter:off
-    #' Given a list of LHTs it renames each variable into the expected FishLife names
-    # // @formatter:on
     new_lhts <- list()
     for (lht_name in names(lhts)) {
       lht_value <- lhts[[lht_name]]
@@ -40,17 +67,20 @@ PredictedLHTGenerator <- R6::R6Class("PredictedLHTGenerator", public = list(
     }
     return(new_lhts)
   },
-  build_species_new_lhts = function() {
-    # // @formatter:off
-    #' Build a list of predicting parameters for each species
-    # // @formatter:on
+  # // @formatter:off
+  #' @description
+  #' Build a list of predicting parameters for each taxon
+  #' 
+  #' @returns list of LHT values (another list) for each taxon
+  # // @formatter:on
+  build_taxa_predicting_lhts = function() {
     user_col_names <- names(self$lht_names)
 
     # Generate a list per species that contain the predicting variables
-    predicting_matrix <- self$lht_predicting_matrix %>%
+    predicting_lht_df <- self$predicting_lht_df %>%
       select_at(.vars = user_col_names)
-    all_species_lhts <- private$df_to_not_na_list(predicting_matrix)
-    names(all_species_lhts) <- self$lht_predicting_matrix$species
+    all_species_lhts <- private$df_to_not_na_list(predicting_lht_df)
+    names(all_species_lhts) <- self$predicting_lht_df$species
 
     # Transcribe the predicting variables to those names the Fishlife library expects
     all_species_lhts <- lapply(all_species_lhts, function(species_lhts) {
@@ -59,11 +89,11 @@ PredictedLHTGenerator <- R6::R6Class("PredictedLHTGenerator", public = list(
 
     return(all_species_lhts)
   },
-  generate_predicted_matrices = function(all_species_local_lhts) {
-    # // @formatter:off
-    #' Generate the predicted Fishlife matrices (LHTs and LHT covariances)
-    # // @formatter:on
-
+  # // @formatter:off
+  #' @description
+  #' Generate the predicted Fishlife matrices (LHTs and LHT covariances)
+  # // @formatter:on
+  generate_taxa_predicted_matrices = function(all_species_local_lhts) {
     updated_lhts <- list()
     for (ind_species in names(all_species_local_lhts)) {
       species_local_lhts <- all_species_local_lhts[[ind_species]]
@@ -72,11 +102,11 @@ PredictedLHTGenerator <- R6::R6Class("PredictedLHTGenerator", public = list(
       if (is.null(taxon_details)) {
         stop(paste("Unable to find life history traits for taxa", ind_species))
       }
-      taxon_predictor <- TaxonPredictor$new(self$master_db,
+      taxon_predictor <- TaxonLHTPredictor$new(self$master_db,
                                             taxon_details$estimated_lhts,
                                             taxon_details$estimated_covariance,
                                             species_local_lhts,
-                                            self$func_conversion_matrix)
+                                            self$func_domains)
       updated_lhts[[ind_species]] <- taxon_predictor$predict()
     }
     return(updated_lhts)
