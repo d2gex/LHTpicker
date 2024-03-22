@@ -1,8 +1,8 @@
-#' Multiple Predicted LHT Generator class
+#' Multiple Updated LHT Generator class
 #'
 #' @description
 #' Class that allows the streamline-generation of predicted LHTs given new data.
-PredictedLHTGenerator <- R6::R6Class("PredictedLHTGenerator", public = list(
+UpdatedLHTGenerator <- R6::R6Class("UpdatedLHTGenerator", public = list(
 
   master_db = NULL,
   predicting_lht_df = NULL,
@@ -10,7 +10,7 @@ PredictedLHTGenerator <- R6::R6Class("PredictedLHTGenerator", public = list(
   lht_names = NULL,
   # // @formatter:off
   #' @description
-  #' Initialise the Predicted LHT Generator class
+  #' Initialise the Updated LHT Generator class
   #'
   #' @param master_db Fishlife database
   #' @param predicting_lht_df dataframe providing the taxon details and their predicting LHT values
@@ -31,7 +31,7 @@ PredictedLHTGenerator <- R6::R6Class("PredictedLHTGenerator", public = list(
   #' @returns list of LHT matrices, where each name in the list corresponds a single taxon
   #' @export
   # // @formatter:on
-  predict = function() {
+  update = function() {
     all_species_local_lhts <- private$build_taxa_predicting_lhts()
     predicted_matrices <- private$generate_taxa_predicted_matrices(all_species_local_lhts)
     return(predicted_matrices)
