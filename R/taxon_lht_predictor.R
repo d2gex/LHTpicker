@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Class that given some LHTs will fetch their predicted version according to FishLife covariance
-TaxonLHTPredictor <- R6::R6Class("TaxonLHTPredictor", public = list(
+TaxonLHTPredictor <- R6::R6Class("TaxonLHTPredictor", inherit = MixinUtilities, public = list(
 
   master_db = NULL,
   estimated_lhts = NULL,
@@ -65,11 +65,6 @@ TaxonLHTPredictor <- R6::R6Class("TaxonLHTPredictor", public = list(
     )
   }
 ), private = list(
-  create_empty_dataframe = function(col_names) {
-    df <- data.frame(matrix(nrow = 0, ncol = length(col_names)))
-    colnames(df) <- col_names
-    return(df)
-  },
   list_of_vectors_to_dataframe = function(lht_list) {
     if (length(unique(lengths(lht_list))) != 1) {
       stop("All nested vectors must have the same length")
@@ -90,7 +85,7 @@ TaxonLHTPredictor <- R6::R6Class("TaxonLHTPredictor", public = list(
   build_matrix_new_lhts = function(new_lhts_df, colnames) {
     new_lht_colnames <- colnames(new_lhts_df)
     complement_cols <- setdiff(colnames, new_lht_colnames)
-    empty_df <- private$create_empty_dataframe(complement_cols)
+    empty_df <- self$create_empty_dataframe(complement_cols)
     empty_df[nrow(new_lhts_df),] <- NA
     new_lhts_df <- cbind(new_lhts_df, empty_df)
     return(as.matrix(new_lhts_df))
