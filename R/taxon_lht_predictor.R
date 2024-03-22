@@ -9,17 +9,21 @@ TaxonLHTPredictor <- R6::R6Class("TaxonLHTPredictor", public = list(
   estimated_lht_cov = NULL,
   new_lhts = NULL,
   func_domains = NULL,
-      #' @field common_columns_ds common columns across the underlying data structure of FishLife. Taxa's LHT
-      #'    could end up having additional fields that the overall covariance matrix does not support.
+  # // @formatter:off
+  #' @field common_columns_ds common columns across the underlying data structure of FishLife. Taxa's LHT
+  #'    could end up having additional fields that the overall covariance matrix does not support.
+  # // @formatter:on
   common_columns_ds = NULL,
-      #' @description
-      #'
-      #' @param master_db Fishlife database
-      #' @param estimated_lhts taxon's LHT numeric vector as fetched from Fishlife.
-      #' @param estimated_lht_conv taxon's covariance matrix as fetched from Fishlife
-      #' @param new_lhts predicting LHT list which names must conform to FishLife's expectations
-      #' @param func_domains list of transforming function which names must conform to FishLife's expectations
-      #' @export
+  # // @formatter:off
+  #' @description
+  #'
+  #' @param master_db Fishlife database
+  #' @param estimated_lhts taxon's LHT numeric vector as fetched from Fishlife.
+  #' @param estimated_lht_conv taxon's covariance matrix as fetched from Fishlife
+  #' @param new_lhts predicting LHT list which names must conform to FishLife's expectations
+  #' @param func_domains list of transforming function which names must conform to FishLife's expectations
+  #' @export
+  # // @formatter:on
   initialize = function(master_db, estimated_lhts, estimated_lht_cov, new_lhts, func_domains) {
 
     self$master_db <- master_db
