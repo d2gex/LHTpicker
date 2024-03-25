@@ -57,4 +57,6 @@ FishlifeLHTNameSpace <- R6::R6Class("FishlifeLHTNameSpace", public = list(
     self$backtransform_function <- backtransform_function
   }
 ))
+
+#' @export
 fishlife_context <- FishlifeLHTNameSpace$new()
