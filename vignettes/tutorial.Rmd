@@ -1,0 +1,68 @@
+---
+title: "tutorial"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{LHTPicker}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+# installed_packages <- rownames(installed.packages())
+# if (!'LHTPicker' %in% installed_packages) {
+#   devtools::install_github("https://github.com/d2gex/LHTPicker", dep=TRUE)
+# }
+# Ensure knitr does run the vignette from the same folder as interactively
+knitr::opts_knit$set(root.dir = dirname(getwd()))
+library(LHTPicker)
+```
+
+# Taxa data
+```{r}
+taxon_lhts_to_fetch <- readRDS("vignettes/data/wanted_taxon_details.rds")
+head(taxon_lhts_to_fetch)
+```
+```{r}
+taxon_lhts_to_update <- readRDS("vignettes/data/wanted_update_taxon_details.rds")
+head(taxon_lhts_to_update)
+```
+# Fetch wanted LHTsfrom FishLife
+```{r}
+t_collector <- TaxaLHTCollector$new(testing_db,
+                                    fishlife_context$lht_names,
+                                    fishlife_context$backtransform_function,
+                                    taxon_lhts_to_fetch)
+wanted_lht_df <- t_collector$collect_and_backtransform()
+```
+```{r}
+head(wanted_lht_df)
+```
+# Update local LHTs by using Fishlife predicting capabilities
+```{r}
+lht_gen <- UpdatedLHTGenerator$new(
+  testing_db,
+  wanted_update_taxon_details,
+  fishlife_context$transform_function,
+  fishlife_context$lht_names
+)
+updated_lhts <- p_lht_gen$update()
+
+taxa_extractor <- TaxaUpdateExtractor$new(
+  fishlife_context$updated_prefix,
+  fishlife_context$lht_names,
+  fishlife_context$backtransform_function,
+  taxon_lhts_to_update,
+  updated_lhts
+)
+updated_lhts <- taxa_extractor$extract_and_backtransform()
+```
+```{r}
+head(updated_lhts)
+```
