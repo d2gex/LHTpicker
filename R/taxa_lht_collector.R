@@ -1,0 +1,82 @@
+#' Multiple Taxon Collector class
+#'
+#' @description
+#' Class that collect and transform predicted values of LHTs for multiple species obtained from FishLife
+TaxaLHTCollector <- R6::R6Class("TaxaLHTCollector", inherit = MixinUtilities, public = list(
+  master_db = NULL,
+  lht_names = NULL,
+  back_transform_matrix = NULL,
+  wanted_lht_df = NULL,
+  # // @formatter:off
+  #' @description
+  #' Initialise the TaxaLHTCollector
+  #'
+  #' @param master_db Fishlife database
+  #' @param lht_names list of user-defined LHT names associated with their FishLife's counterparts
+  #' @param back_transform_matrix list of backward-transformation functions to be applied on obtained LHT from FishLife
+  #' @param wanted_lht_df dataframe holding the wanted taxa details as rows and LHT as columns
+  #' @export
+  # // @formatter:on
+  initialize = function(master_db, lht_names, back_transform_matrix, wanted_lht_df) {
+    self$master_db <- master_db
+    self$lht_names <- lht_names
+    self$back_transform_matrix <- back_transform_matrix
+    self$wanted_lht_df <- wanted_lht_df
+  },
+  # // @formatter:off
+  #' @description
+  #' Collect and backtransform all LHT values per taxon that have beed obtained from Fishlife
+  #'
+  #' @returns dataframe that keeps the LHT values per taxon
+  # // @formatter:on
+  collect_and_backtransform = function() {
+    results <- self$wanted_lht_df
+    for (ind_taxon in self$wanted_lht_df$species) {
+      taxon_grabber <- TaxonLHTGrabber$new(self$master_db, ind_taxon)
+      taxon_details <- taxon_grabber$extract()
+      subset_estimated_lhts <- private$subset_taxon_detail_matrix(taxon_details$estimated_lhts)
+      results <- private$backtransform_and_fill_user_df(subset_estimated_lhts, ind_taxon, results)
+    }
+    return(results)
+  }
+), private = list(
+  # // @formatter:off
+  #' @description
+  #' Given a full matrix of LHT values for as specific taxon, it returns a subset of those values matching
+  #' the user's interest
+  #'
+  #' @param matrix of LHT values as returned by Fishlife
+  #' @returns subset matrix of LHT values
+  # // @formatter:on
+  subset_taxon_detail_matrix = function(taxon_details) {
+
+    # convert user-defined LHT names to FishLife's
+    sought_user_names <- names(self$wanted_lht_df)
+    sought_user_names <- sought_user_names[!(sought_user_names %in% 'species')]
+    sought_fishlife_names <- unlist(unname(self$lht_names[sought_user_names]))
+
+    # Subset the matrix of all return pair of values provided by Fishlife
+    return(taxon_details[sought_fishlife_names])
+  },
+  # // @formatter:off
+  #' @description
+  #' Given a subset of LHT values from Fishlife matching the user's interest, it updates user-defined dataframe
+  #'
+  #'
+  #' @param taxon_details subset matrix from the full Fishlife matrix
+  #' @param taxon_name name of taxon
+  #' @param results original user-defined dataframe
+  #' @return updated user-defined dataframe
+  # // @formatter:on
+  backtransform_and_fill_user_df = function(taxon_details, taxon_name, results) {
+    inverted_lht_names <- lapply(names(self$lht_names), function(x) { x })
+    names(inverted_lht_names) <- unlist(unname(self$lht_names))
+    for (fish_lht_name in names(taxon_details)) {
+      u_lht_name <- inverted_lht_names[[fish_lht_name]]
+      lht_value <- taxon_details[fish_lht_name]
+      back_func <- self$back_transform_matrix[[fish_lht_name]]
+      results[results$species == taxon_name, u_lht_name] <- back_func(lht_value)
+    }
+    return(results)
+  }
+))
