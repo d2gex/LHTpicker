@@ -35,7 +35,7 @@ head(taxon_lhts_to_update)
 ```
 # Fetch wanted LHTsfrom FishLife
 ```{r}
-t_collector <- TaxaLHTCollector$new(testing_db,
+t_collector <- TaxaLHTCollector$new(FishLife::FishBase_and_Morphometrics,
                                     fishlife_context$lht_names,
                                     fishlife_context$backtransform_function,
                                     taxon_lhts_to_fetch)
@@ -47,7 +47,7 @@ head(wanted_lht_df)
 # Update local LHTs by using Fishlife predicting capabilities
 ```{r}
 lht_gen <- UpdatedLHTGenerator$new(
-  testing_db,
+  FishLife::FishBase_and_Morphometrics,
   wanted_update_taxon_details,
   fishlife_context$transform_function,
   fishlife_context$lht_names
