@@ -1,7 +1,7 @@
 test_that("Multiple taxon LHTS are updated", {
   p_lht_gen <- UpdatedLHTGenerator$new(
     testing_db,
-    testing_sample_data,
+    wanted_update_taxon_details,
     fishlife_context$transform_function,
     fishlife_context$lht_names
   )
