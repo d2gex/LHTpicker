@@ -15,7 +15,8 @@ Depends:
 Imports:
     R6,
     stringr,
-    dplyr
+    dplyr,
+    magrittr
 Remotes:
     James-Thorson-NOAA/FishLife
 Suggests: 
