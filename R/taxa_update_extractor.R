@@ -63,7 +63,7 @@ TaxaUpdateExtractor <- R6::R6Class("TaxaUpdateExtractor", inherit = MixinUtiliti
       results <- cbind(results, updated_empty_df)
     }
     for (lht_name in updated_lht_names) {
-      results[results$species == taxon_name, lht_name] <- taxon_details[, lht_name]
+      results[results$taxon == taxon_name, lht_name] <- taxon_details[, lht_name]
     }
     return(results)
   }

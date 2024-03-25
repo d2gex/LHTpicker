@@ -8,10 +8,10 @@ test_that("multiplication works", {
   non_logarithmic_scale <- 10
 
   expect_true(nrow(all_lhts_df) == 2)
-  expect_true(any(!is.na(all_lhts_df[all_lhts_df$species == 'Trisopterus luscus',])))
-  expect_true(any(!is.na(all_lhts_df[all_lhts_df$species == 'Pollachius pollachius',])))
+  expect_true(any(!is.na(all_lhts_df[all_lhts_df$taxon == 'Trisopterus luscus',])))
+  expect_true(any(!is.na(all_lhts_df[all_lhts_df$taxon == 'Pollachius pollachius',])))
 
   # Ensure values have been backtransformed
-  expect_true(all_lhts_df[all_lhts_df$species == 'Trisopterus luscus', 'Linf'] > non_logarithmic_scale)
-  expect_true(all_lhts_df[all_lhts_df$species == 'Pollachius pollachius', 'Linf'] > non_logarithmic_scale)
+  expect_true(all_lhts_df[all_lhts_df$taxon == 'Trisopterus luscus', 'Linf'] > non_logarithmic_scale)
+  expect_true(all_lhts_df[all_lhts_df$taxon == 'Pollachius pollachius', 'Linf'] > non_logarithmic_scale)
 })

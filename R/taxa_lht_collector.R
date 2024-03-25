@@ -31,7 +31,7 @@ TaxaLHTCollector <- R6::R6Class("TaxaLHTCollector", inherit = MixinUtilities, pu
   # // @formatter:on
   collect_and_backtransform = function() {
     results <- self$wanted_lht_df
-    for (ind_taxon in self$wanted_lht_df$species) {
+    for (ind_taxon in self$wanted_lht_df$taxon) {
       taxon_grabber <- TaxonLHTCollector$new(self$master_db, ind_taxon)
       taxon_details <- taxon_grabber$extract()
       subset_estimated_lhts <- private$subset_taxon_detail_matrix(taxon_details$estimated_lhts)
@@ -52,7 +52,7 @@ TaxaLHTCollector <- R6::R6Class("TaxaLHTCollector", inherit = MixinUtilities, pu
 
     # convert user-defined LHT names to FishLife's
     sought_user_names <- names(self$wanted_lht_df)
-    sought_user_names <- sought_user_names[!(sought_user_names %in% 'species')]
+    sought_user_names <- sought_user_names[!(sought_user_names %in% 'taxon')]
     sought_fishlife_names <- unlist(unname(self$lht_names[sought_user_names]))
 
     # Subset the matrix of all return pair of values provided by Fishlife
@@ -75,7 +75,7 @@ TaxaLHTCollector <- R6::R6Class("TaxaLHTCollector", inherit = MixinUtilities, pu
       u_lht_name <- inverted_lht_names[[fish_lht_name]]
       lht_value <- taxon_details[fish_lht_name]
       back_func <- self$back_transform_matrix[[fish_lht_name]]
-      results[results$species == taxon_name, u_lht_name] <- back_func(lht_value)
+      results[results$taxon == taxon_name, u_lht_name] <- back_func(lht_value)
     }
     return(results)
   }

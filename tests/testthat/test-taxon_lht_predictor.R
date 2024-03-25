@@ -10,7 +10,7 @@ test_that("Predict LHT for a specific taxa", {
   estimated_lhts <- t.luscus_details$estimated_lhts
   estimated_covariance <- t.luscus_details$estimated_covariance
   # Provide LHT values following fishlife's name convention
-  input_lhts <- wanted_update_taxon_details[wanted_update_taxon_details$species == 'Trisopterus luscus',]
+  input_lhts <- wanted_update_taxon_details[wanted_update_taxon_details$taxon == 'Trisopterus luscus',]
   input_lhts <- input_lhts[-1] # forget about species
   # Order both data structures to avoid mismatching of values
   input_lhts <- input_lhts %>% select(order(colnames(input_lhts)))

@@ -80,7 +80,7 @@ UpdatedLHTGenerator <- R6::R6Class("UpdatedLHTGenerator", public = list(
     predicting_lht_df <- self$predicting_lht_df %>%
       select_at(.vars = user_col_names)
     all_species_lhts <- private$df_to_not_na_list(predicting_lht_df)
-    names(all_species_lhts) <- self$predicting_lht_df$species
+    names(all_species_lhts) <- self$predicting_lht_df$taxon
 
     # Transcribe the predicting variables to those names the Fishlife library expects
     all_species_lhts <- lapply(all_species_lhts, function(species_lhts) {
