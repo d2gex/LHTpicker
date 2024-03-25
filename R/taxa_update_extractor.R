@@ -1,8 +1,8 @@
-#' Multiple Taxon Prediction Extractor class
+#' Multiple Taxon Update Extractor class
 #'
 #' @description
 #' Class that extracts and transform predicted values of LHTs for multiple species obtained from FishLife
-TaxaPredictionExtractor <- R6::R6Class("TaxaPredictionExtractor", inherit = MixinUtilities, public = list(
+TaxaUpdateExtractor <- R6::R6Class("TaxaUpdateExtractor", inherit = MixinUtilities, public = list(
   update_prefix = NULL,
   lht_names = NULL,
   back_transform_matrix = NULL,
@@ -36,10 +36,10 @@ TaxaPredictionExtractor <- R6::R6Class("TaxaPredictionExtractor", inherit = Mixi
     results <- self$predicting_lht_df
     for (ind_species in names(self$updated_lht_list)) {
       predicted_taxon_lht <- (self$updated_lht_list[[ind_species]])$updatemean_j
-      tax_extractor <- TaxonPredictionExtractor$new(self$update_prefix,
-                                                    self$lht_names,
-                                                    self$back_transform_matrix,
-                                                    predicted_taxon_lht)
+      tax_extractor <- TaxonUpdateExtractor$new(self$update_prefix,
+                                                self$lht_names,
+                                                self$back_transform_matrix,
+                                                predicted_taxon_lht)
       taxon_details <- tax_extractor$extract_and_backtransform()
       results <- private$update_lht_results(results, taxon_details, ind_species)
     }

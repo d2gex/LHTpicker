@@ -1,8 +1,8 @@
-#' Single Taxon Prediction Extractor class
+#' Single Taxon Update Extractor class
 #'
 #' @description
 #' Class that extracts and transform predicted values of LHTs for a single species obtained from FishLife
-TaxonPredictionExtractor <- R6::R6Class("TaxonPredictionExtractor", public = list(
+TaxonUpdateExtractor <- R6::R6Class("TaxonUpdateExtractor", public = list(
   update_prefix = NULL,
   predicted_results = NULL,
   lht_names = NULL,
