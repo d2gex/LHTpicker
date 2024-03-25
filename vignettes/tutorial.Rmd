@@ -1,8 +1,8 @@
 ---
-title: "Tutorial"
+title: "Tutorial: Use Cases"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{LHTPicker}
+  %\VignetteIndexEntry{Tutorial: Use Cases}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
