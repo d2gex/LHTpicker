@@ -1,3 +1,7 @@
+#' Fishlife Context class
+#'
+#' @description
+#' Class that allows the transition between user-defined LHT names and those specifically used by Fishlife
 FishlifeLHTNameSpace <- R6::R6Class("FishlifeLHTNameSpace", public = list(
 
   # // @formatter:off
