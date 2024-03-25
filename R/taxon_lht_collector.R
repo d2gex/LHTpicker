@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Class that abstracts away the underlying FishLife dynamics and grab the details of a given taxon
-TaxonLHTGrabber <- R6::R6Class("TaxonLHTGrabber", public = list(
+TaxonLHTCollector <- R6::R6Class("TaxonLHTCollector", public = list(
 
   master_db = NULL,
   taxon = NULL,

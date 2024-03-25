@@ -32,7 +32,7 @@ TaxaLHTCollector <- R6::R6Class("TaxaLHTCollector", inherit = MixinUtilities, pu
   collect_and_backtransform = function() {
     results <- self$wanted_lht_df
     for (ind_taxon in self$wanted_lht_df$species) {
-      taxon_grabber <- TaxonLHTGrabber$new(self$master_db, ind_taxon)
+      taxon_grabber <- TaxonLHTCollector$new(self$master_db, ind_taxon)
       taxon_details <- taxon_grabber$extract()
       subset_estimated_lhts <- private$subset_taxon_detail_matrix(taxon_details$estimated_lhts)
       results <- private$backtransform_and_fill_user_df(subset_estimated_lhts, ind_taxon, results)

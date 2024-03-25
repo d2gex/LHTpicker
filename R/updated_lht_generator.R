@@ -97,7 +97,7 @@ UpdatedLHTGenerator <- R6::R6Class("UpdatedLHTGenerator", public = list(
     updated_lhts <- list()
     for (ind_species in names(all_species_local_lhts)) {
       species_local_lhts <- all_species_local_lhts[[ind_species]]
-      taxon_extractor <- TaxonLHTGrabber$new(self$master_db, ind_species)
+      taxon_extractor <- TaxonLHTCollector$new(self$master_db, ind_species)
       taxon_details <- taxon_extractor$extract()
       if (is.null(taxon_details)) {
         stop(paste("Unable to find life history traits for taxa", ind_species))

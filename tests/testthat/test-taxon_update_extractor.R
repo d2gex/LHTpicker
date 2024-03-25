@@ -1,7 +1,7 @@
 test_that("Extraction and backtransformation of predicted LHT values", {
 
   # (1) Fetch ...
-  t_extractor <- TaxonLHTGrabber$new(testing_db, "Trisopterus luscus")
+  t_extractor <- TaxonLHTCollector$new(testing_db, "Trisopterus luscus")
   t.luscus_details <- t_extractor$extract()
 
   estimated_lhts <- t.luscus_details$estimated_lhts
