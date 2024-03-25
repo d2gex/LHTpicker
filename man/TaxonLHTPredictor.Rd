@@ -10,7 +10,7 @@ matrix-form LHT values to be passed on to FishLife
 Class that given some LHTs will fetch their predicted version according to FishLife covariance
 }
 \section{Super class}{
-\code{LHTPicker::MixinUtilities} -> \code{TaxonLHTPredictor}
+\code{\link[LHTPicker:MixinUtilities]{LHTPicker::MixinUtilities}} -> \code{TaxonLHTPredictor}
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
