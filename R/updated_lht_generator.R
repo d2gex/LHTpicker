@@ -47,7 +47,7 @@ UpdatedLHTGenerator <- R6::R6Class("UpdatedLHTGenerator", public = list(
     return(
       lapply(split(df, 1:nrow(df)), function(x) {
         x <- x %>%
-          select_if(~!any(is.na(.)))
+          dplyr::select_if(~!any(is.na(.)))
         as.list(x)
       })
     )
@@ -78,7 +78,7 @@ UpdatedLHTGenerator <- R6::R6Class("UpdatedLHTGenerator", public = list(
 
     # Generate a list per species that contain the predicting variables
     predicting_lht_df <- self$predicting_lht_df %>%
-      select_at(.vars = user_col_names)
+      dplyr::select_at(.vars = user_col_names)
     all_species_lhts <- private$df_to_not_na_list(predicting_lht_df)
     names(all_species_lhts) <- self$predicting_lht_df$taxon
 
@@ -103,10 +103,10 @@ UpdatedLHTGenerator <- R6::R6Class("UpdatedLHTGenerator", public = list(
         stop(paste("Unable to find life history traits for taxa", ind_species))
       }
       taxon_predictor <- TaxonLHTPredictor$new(self$master_db,
-                                            taxon_details$estimated_lhts,
-                                            taxon_details$estimated_covariance,
-                                            species_local_lhts,
-                                            self$func_domains)
+                                               taxon_details$estimated_lhts,
+                                               taxon_details$estimated_covariance,
+                                               species_local_lhts,
+                                               self$func_domains)
       updated_lhts[[ind_species]] <- taxon_predictor$predict()
     }
     return(updated_lhts)
