@@ -50,3 +50,5 @@ rsconnect/
 .idea
 .test.R
 .*.csv
+inst/doc
+docs
