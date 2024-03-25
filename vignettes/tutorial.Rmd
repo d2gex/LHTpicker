@@ -1,5 +1,5 @@
 ---
-title: "tutorial"
+title: "Tutorial"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{LHTPicker}
@@ -24,7 +24,7 @@ knitr::opts_knit$set(root.dir = dirname(getwd()))
 library(LHTPicker)
 ```
 
-# Taxa data
+## Taxa data
 ```{r}
 taxon_lhts_to_fetch <- readRDS("vignettes/data/wanted_taxon_details.rds")
 head(taxon_lhts_to_fetch)
@@ -33,7 +33,7 @@ head(taxon_lhts_to_fetch)
 taxon_lhts_to_update <- readRDS("vignettes/data/wanted_update_taxon_details.rds")
 head(taxon_lhts_to_update)
 ```
-# Fetch wanted LHTsfrom FishLife
+## Fetch wanted LHTs from FishLife
 ```{r}
 t_collector <- TaxaLHTCollector$new(FishLife::FishBase_and_Morphometrics,
                                     fishlife_context$lht_names,
@@ -44,11 +44,11 @@ wanted_lht_df <- t_collector$collect_and_backtransform()
 ```{r}
 head(wanted_lht_df)
 ```
-# Update local LHTs by using Fishlife predicting capabilities
+## Fetch updated LHTs given local's LHT DATA
 ```{r}
-lht_gen <- UpdatedLHTGenerator$new(
+p_lht_gen <- UpdatedLHTGenerator$new(
   FishLife::FishBase_and_Morphometrics,
-  wanted_update_taxon_details,
+  taxon_lhts_to_update,
   fishlife_context$transform_function,
   fishlife_context$lht_names
 )
@@ -61,8 +61,8 @@ taxa_extractor <- TaxaUpdateExtractor$new(
   taxon_lhts_to_update,
   updated_lhts
 )
-updated_lhts <- taxa_extractor$extract_and_backtransform()
+updated_lht_df <- taxa_extractor$extract_and_backtransform()
 ```
 ```{r}
-head(updated_lhts)
+head(updated_lht_df )
 ```
