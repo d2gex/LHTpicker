@@ -1,6 +1,6 @@
-Package: LHTPicker
+Package: LHTpicker
 Type: Package
-Title: Fishlife LHT Picker
+Title: Fishlife LHT picker
 Version: 1.0
 Date: 2024-03-25
 Authors@R: person(given = "Dan",

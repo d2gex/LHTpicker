@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 # }
 # Ensure knitr does run the vignette from the same folder as interactively
 knitr::opts_knit$set(root.dir = dirname(getwd()))
-library(LHTPicker)
+library(LHTpicker)
 ```
 
 ## Taxa data
