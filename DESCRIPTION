@@ -8,7 +8,7 @@ Authors@R: person(given = "Dan",
              role = c("aut", "cre"),
              email = "dgarcia@iim.csic.es")
 Maintainer: Dan G <dgarcia@iim.csic.es>
-Description: A FishLife thin wrapper to streamline the collection and/or update Life History Traits (LHTs) for multiple taxa
+Description: A FishLife thin wrapper to streamline the collection and/or update of Life History Traits (LHTs) for multiple taxa
 License: MIT License
 Depends:
     R (>= 4.2.2)
@@ -19,7 +19,7 @@ Imports:
     magrittr
 Remotes:
     James-Thorson-NOAA/FishLife
-Suggests: 
+Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
