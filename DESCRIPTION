@@ -26,3 +26,4 @@ Suggests:
 Config/testthat/edition: 3
 RoxygenNote: 7.3.1
 VignetteBuilder: knitr
+URL: https://d2gex.github.io/LHTpicker/
