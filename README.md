@@ -9,4 +9,9 @@ the underlying data structure, easing the fetch and update of local LHTs. The fo
 2. Provide predicting LHTs and fetch the **updated** predicted values from FishLife.
 3. Both processes, 1 and 2 can be accomplished in a streamline fashion for multiple species via a csv file.
 
+# Installation
 
+This R package can be installed through the devtools as follows:
+```r 
+  devtools::install_github("https://github.com/d2gex/LHTpicker", dep=TRUE)
+```
