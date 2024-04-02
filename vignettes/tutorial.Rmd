@@ -24,27 +24,34 @@ knitr::opts_knit$set(root.dir = dirname(getwd()))
 library(LHTpicker)
 ```
 
-## Taxa data
+# 1. Fetch wanted LHTs from FishLife
+
+## 1.1 Inputted taxa details
+
+A csv file with the taxon names you are after and the **wanted** LHTs is required as shown below
 ```{r}
 taxon_lhts_to_fetch <- readRDS("vignettes/data/wanted_taxon_details.rds")
 head(taxon_lhts_to_fetch)
 ```
-```{r}
-taxon_lhts_to_update <- readRDS("vignettes/data/wanted_update_taxon_details.rds")
-head(taxon_lhts_to_update)
-```
-## Fetch wanted LHTs from FishLife
+
+## 1.2 LHT fetching
 ```{r}
 t_collector <- TaxaLHTCollector$new(FishLife::FishBase_and_Morphometrics,
                                     fishlife_context$lht_names,
                                     fishlife_context$backtransform_function,
                                     taxon_lhts_to_fetch)
 wanted_lht_df <- t_collector$collect_and_backtransform()
-```
-```{r}
 head(wanted_lht_df)
 ```
-## Fetch updated LHTs given local's LHT DATA
+# 2 Fetch updated LHTs given new LHT data
+
+## 2.1 Inputted predicting taxa details
+A csv file with the taxon names you are after and the **wanted-to-update** LHTs is required as shown below
+```{r}
+taxon_lhts_to_update <- readRDS("vignettes/data/wanted_update_taxon_details.rds")
+head(taxon_lhts_to_update)
+```
+## 2.2 LHT Update
 ```{r}
 p_lht_gen <- UpdatedLHTGenerator$new(
   FishLife::FishBase_and_Morphometrics,
@@ -53,7 +60,11 @@ p_lht_gen <- UpdatedLHTGenerator$new(
   fishlife_context$lht_names
 )
 updated_lhts <- p_lht_gen$update()
+```
+## 2.3 Rebuild LHT dataframe
 
+The dataframe that held the predicting LHT values is modified with the new updated values. New columns are added and prefixed by a predefined tag stored in `fishlife_context$updated_prefix`
+```{r}
 taxa_extractor <- TaxaUpdateExtractor$new(
   fishlife_context$updated_prefix,
   fishlife_context$lht_names,
@@ -62,7 +73,5 @@ taxa_extractor <- TaxaUpdateExtractor$new(
   updated_lhts
 )
 updated_lht_df <- taxa_extractor$extract_and_backtransform()
-```
-```{r}
-head(updated_lht_df )
+head(updated_lht_df)
 ```
