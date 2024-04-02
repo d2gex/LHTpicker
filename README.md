@@ -3,11 +3,14 @@
 # LHTpicker
 
 This is a thin wrapper over [FishLife](https://github.com/James-Thorson-NOAA/FishLife) library that helps to abstract 
-the underlying data structure, easing the fetch and update of local LHTs. The following processes have been integrated:
+the underlying data structure from the final user, easing the fetching and update of local LHTs. 
+The following processes have been integrated:
 
-1. Fetch predicted LHTs **'as is'** from FishLife.
-2. Provide predicting LHTs and fetch the **updated** predicted values from FishLife.
-3. Both processes, 1 and 2 can be accomplished in a streamline fashion for multiple species via a csv file.
+1. Fetch predicted LHTs **'as is'** from FishLife for an individual taxon.
+2. Provide predicting LHTs and fetch the **updated** predicted values from FishLife for an individual taxon.
+3. Both processes, 1 and 2 can be accomplished in a streamline fashion for multiple taxa via a csv file.
+
+Please have a look at this [tutorial](https://d2gex.github.io/LHTpicker/articles/tutorial.html) to understand how it works.
 
 # Installation
 
