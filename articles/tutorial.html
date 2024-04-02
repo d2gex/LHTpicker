@@ -79,32 +79,30 @@
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_knit.html" class="external-link">opts_knit</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>root.dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">dirname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://d2gex.github.io/LHTpicker/">LHTpicker</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
-<h2 id="taxa-data">Taxa data<a class="anchor" aria-label="anchor" href="#taxa-data"></a>
+<h2 id="fetch-wanted-lhts-from-fishlife">1. Fetch wanted LHTs from FishLife<a class="anchor" aria-label="anchor" href="#fetch-wanted-lhts-from-fishlife"></a>
 </h2>
+<div class="section level3">
+<h3 id="inputted-taxa-details">1.1 Inputted taxa details<a class="anchor" aria-label="anchor" href="#inputted-taxa-details"></a>
+</h3>
+<p>A csv file with the taxon names you are after and the
+<strong>wanted</strong> LHTs is required as shown below</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">taxon_lhts_to_fetch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"vignettes/data/wanted_taxon_details.rds"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">taxon_lhts_to_fetch</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                   taxon Linf Winf  K L50  M Amat Amax Temperature</span></span>
 <span><span class="co">#&gt; 1    Trisopterus luscus   NA   NA NA  NA NA   NA   NA          NA</span></span>
 <span><span class="co">#&gt; 2 Pollachius pollachius   NA   NA NA  NA NA   NA   NA          NA</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">taxon_lhts_to_update</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"vignettes/data/wanted_update_taxon_details.rds"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">taxon_lhts_to_update</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                   taxon   Linf  Winf     K   L50     M Amat Amax Temperature</span></span>
-<span><span class="co">#&gt; 1    Trisopterus luscus  42.41   921 0.210 19.45 0.254   NA    9        14.3</span></span>
-<span><span class="co">#&gt; 2 Pollachius pollachius 102.14 12045 0.193 41.60 0.284   NA    8        14.3</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="fetch-wanted-lhts-from-fishlife">Fetch wanted LHTs from FishLife<a class="anchor" aria-label="anchor" href="#fetch-wanted-lhts-from-fishlife"></a>
-</h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="section level3">
+<h3 id="lht-fetching">1.2 LHT fetching<a class="anchor" aria-label="anchor" href="#lht-fetching"></a>
+</h3>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">t_collector</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/TaxaLHTCollector.html">TaxaLHTCollector</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="fu">FishLife</span><span class="fu">::</span><span class="va"><a href="https://james-thorson-noaa.github.io/FishLife/reference/FishBase_and_Morphometrics.html" class="external-link">FishBase_and_Morphometrics</a></span>,</span>
 <span>                                    <span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span>,</span>
 <span>                                    <span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function</span>,</span>
 <span>                                    <span class="va">taxon_lhts_to_fetch</span><span class="op">)</span></span>
-<span><span class="va">wanted_lht_df</span> <span class="op">&lt;-</span> <span class="va">t_collector</span><span class="op">$</span><span class="fu">collect_and_backtransform</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">wanted_lht_df</span><span class="op">)</span></span>
+<span><span class="va">wanted_lht_df</span> <span class="op">&lt;-</span> <span class="va">t_collector</span><span class="op">$</span><span class="fu">collect_and_backtransform</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">wanted_lht_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                   taxon     Linf      Winf         K      L50         M</span></span>
 <span><span class="co">#&gt; 1    Trisopterus luscus 43.86770  833.9878 0.3737931 19.52203 0.5981946</span></span>
 <span><span class="co">#&gt; 2 Pollachius pollachius 87.30785 5819.9735 0.1867131 34.71789 0.3085845</span></span>
@@ -112,28 +110,51 @@
 <span><span class="co">#&gt; 1 1.400562  6.458926    17.36961</span></span>
 <span><span class="co">#&gt; 2 3.456610 12.138258    12.11773</span></span></code></pre></div>
 </div>
+</div>
 <div class="section level2">
-<h2 id="fetch-updated-lhts-given-locals-lht-data">Fetch updated LHTs given local’s LHT DATA<a class="anchor" aria-label="anchor" href="#fetch-updated-lhts-given-locals-lht-data"></a>
+<h2 id="fetch-updated-lhts-given-new-lht-data">2 Fetch updated LHTs given new LHT data<a class="anchor" aria-label="anchor" href="#fetch-updated-lhts-given-new-lht-data"></a>
 </h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="section level3">
+<h3 id="inputted-predicting-taxa-details">2.1 Inputted predicting taxa details<a class="anchor" aria-label="anchor" href="#inputted-predicting-taxa-details"></a>
+</h3>
+<p>A csv file with the taxon names you are after and the
+<strong>wanted-to-update</strong> LHTs is required as shown below</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">taxon_lhts_to_update</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"vignettes/data/wanted_update_taxon_details.rds"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">taxon_lhts_to_update</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                   taxon   Linf  Winf     K   L50     M Amat Amax Temperature</span></span>
+<span><span class="co">#&gt; 1    Trisopterus luscus  42.41   921 0.210 19.45 0.254   NA    9        14.3</span></span>
+<span><span class="co">#&gt; 2 Pollachius pollachius 102.14 12045 0.193 41.60 0.284   NA    8        14.3</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="lht-update">2.2 LHT Update<a class="anchor" aria-label="anchor" href="#lht-update"></a>
+</h3>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p_lht_gen</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/UpdatedLHTGenerator.html">UpdatedLHTGenerator</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
 <span>  <span class="fu">FishLife</span><span class="fu">::</span><span class="va"><a href="https://james-thorson-noaa.github.io/FishLife/reference/FishBase_and_Morphometrics.html" class="external-link">FishBase_and_Morphometrics</a></span>,</span>
 <span>  <span class="va">taxon_lhts_to_update</span>,</span>
 <span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">transform_function</span>,</span>
 <span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">updated_lhts</span> <span class="op">&lt;-</span> <span class="va">p_lht_gen</span><span class="op">$</span><span class="fu">update</span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">taxa_extractor</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/TaxaUpdateExtractor.html">TaxaUpdateExtractor</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
+<span><span class="va">updated_lhts</span> <span class="op">&lt;-</span> <span class="va">p_lht_gen</span><span class="op">$</span><span class="fu">update</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="rebuild-lht-dataframe">2.3 Rebuild LHT dataframe<a class="anchor" aria-label="anchor" href="#rebuild-lht-dataframe"></a>
+</h3>
+<p>The dataframe that held the predicting LHT values is modified with
+the new updated values. New columns are added and prefixed by a
+predefined tag stored in
+<code>fishlife_context$updated_prefix</code></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">taxa_extractor</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/TaxaUpdateExtractor.html">TaxaUpdateExtractor</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
 <span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">updated_prefix</span>,</span>
 <span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span>,</span>
 <span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function</span>,</span>
 <span>  <span class="va">taxon_lhts_to_update</span>,</span>
 <span>  <span class="va">updated_lhts</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">updated_lht_df</span> <span class="op">&lt;-</span> <span class="va">taxa_extractor</span><span class="op">$</span><span class="fu">extract_and_backtransform</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">updated_lht_df</span> <span class="op">)</span></span>
+<span><span class="va">updated_lht_df</span> <span class="op">&lt;-</span> <span class="va">taxa_extractor</span><span class="op">$</span><span class="fu">extract_and_backtransform</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">updated_lht_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                   taxon   Linf  Winf     K   L50     M Amat Amax Temperature</span></span>
 <span><span class="co">#&gt; 1    Trisopterus luscus  42.41   921 0.210 19.45 0.254   NA    9        14.3</span></span>
 <span><span class="co">#&gt; 2 Pollachius pollachius 102.14 12045 0.193 41.60 0.284   NA    8        14.3</span></span>
@@ -143,6 +164,7 @@
 <span><span class="co">#&gt;   updated_Amat updated_Temperature</span></span>
 <span><span class="co">#&gt; 1     1.445218            16.72769</span></span>
 <span><span class="co">#&gt; 2     3.418150            13.05402</span></span></code></pre></div>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
