@@ -16,7 +16,8 @@ Imports:
     R6,
     stringr,
     dplyr,
-    magrittr
+    magrittr,
+    FishLife
 Remotes:
     James-Thorson-NOAA/FishLife
 Suggests:
