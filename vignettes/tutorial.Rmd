@@ -4,7 +4,7 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Tutorial: Use Cases}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+  %\VignetteEncoding{UTF-8}f
 ---
 
 ```{r, include = FALSE}
@@ -38,7 +38,7 @@ head(taxon_lhts_to_fetch)
 ```{r}
 t_collector <- TaxaLHTCollector$new(FishLife::FishBase_and_Morphometrics,
                                     fishlife_context$lht_names,
-                                    fishlife_context$backtransform_function,
+                                    fishlife_context$backtransform_function_list,
                                     taxon_lhts_to_fetch)
 wanted_lht_df <- t_collector$collect_and_backtransform()
 head(wanted_lht_df)
@@ -56,7 +56,7 @@ head(taxon_lhts_to_update)
 p_lht_gen <- UpdatedLHTGenerator$new(
   FishLife::FishBase_and_Morphometrics,
   taxon_lhts_to_update,
-  fishlife_context$transform_function,
+  fishlife_context$transform_function_list,
   fishlife_context$lht_names
 )
 updated_lhts <- p_lht_gen$update()
@@ -68,7 +68,7 @@ The dataframe that held the predicting LHT values is modified with the new updat
 taxa_extractor <- TaxaUpdateExtractor$new(
   fishlife_context$updated_prefix,
   fishlife_context$lht_names,
-  fishlife_context$backtransform_function,
+  fishlife_context$backtransform_function_list,
   taxon_lhts_to_update,
   updated_lhts
 )
