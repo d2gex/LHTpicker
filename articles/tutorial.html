@@ -99,7 +99,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">t_collector</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/TaxaLHTCollector.html">TaxaLHTCollector</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="fu">FishLife</span><span class="fu">::</span><span class="va"><a href="https://james-thorson-noaa.github.io/FishLife/reference/FishBase_and_Morphometrics.html" class="external-link">FishBase_and_Morphometrics</a></span>,</span>
 <span>                                    <span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span>,</span>
-<span>                                    <span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function</span>,</span>
+<span>                                    <span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function_list</span>,</span>
 <span>                                    <span class="va">taxon_lhts_to_fetch</span><span class="op">)</span></span>
 <span><span class="va">wanted_lht_df</span> <span class="op">&lt;-</span> <span class="va">t_collector</span><span class="op">$</span><span class="fu">collect_and_backtransform</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">wanted_lht_df</span><span class="op">)</span></span>
@@ -133,7 +133,7 @@
 <code class="sourceCode R"><span><span class="va">p_lht_gen</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/UpdatedLHTGenerator.html">UpdatedLHTGenerator</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
 <span>  <span class="fu">FishLife</span><span class="fu">::</span><span class="va"><a href="https://james-thorson-noaa.github.io/FishLife/reference/FishBase_and_Morphometrics.html" class="external-link">FishBase_and_Morphometrics</a></span>,</span>
 <span>  <span class="va">taxon_lhts_to_update</span>,</span>
-<span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">transform_function</span>,</span>
+<span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">transform_function_list</span>,</span>
 <span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">updated_lhts</span> <span class="op">&lt;-</span> <span class="va">p_lht_gen</span><span class="op">$</span><span class="fu">update</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -149,7 +149,7 @@ predefined tag stored in
 <code class="sourceCode R"><span><span class="va">taxa_extractor</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/TaxaUpdateExtractor.html">TaxaUpdateExtractor</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
 <span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">updated_prefix</span>,</span>
 <span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span>,</span>
-<span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function</span>,</span>
+<span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function_list</span>,</span>
 <span>  <span class="va">taxon_lhts_to_update</span>,</span>
 <span>  <span class="va">updated_lhts</span></span>
 <span><span class="op">)</span></span>

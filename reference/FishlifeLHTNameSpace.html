@@ -57,11 +57,11 @@
 <dd><p>User-defined list of LHT names associated with the expected FishLife names</p></dd>
 
 
-<dt><code>transform_function</code></dt>
+<dt><code>transform_function_list</code></dt>
 <dd><p>Forward function conversion required for each user-defined parameter.</p></dd>
 
 
-<dt><code>backtransform_function</code></dt>
+<dt><code>backtransform_function_list</code></dt>
 <dd><p>Backward function conversion required for each obtained LHT value.</p></dd>
 
 
@@ -85,12 +85,12 @@
 <span>    <span class="st">"log(growth_coefficient)"</span>, M <span class="op">=</span> <span class="st">"log(natural_mortality)"</span>, L50 <span class="op">=</span></span>
 <span>    <span class="st">"log(length_maturity)"</span>, Amax <span class="op">=</span> <span class="st">"log(age_max)"</span>, Amat <span class="op">=</span> <span class="st">"log(age_maturity)"</span>,</span>
 <span>    Temperature <span class="op">=</span> <span class="st">"temperature"</span><span class="op">)</span>,</span>
-<span>  transform_function <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>`log(length_infinity)` <span class="op">=</span> <span class="va">log</span>, `log(weight_infinity)` <span class="op">=</span> <span class="va">log</span>,</span>
-<span>    `log(growth_coefficient)` <span class="op">=</span> <span class="va">log</span>, `log(natural_mortality)` <span class="op">=</span> <span class="va">log</span>,</span>
+<span>  transform_function_list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>`log(length_infinity)` <span class="op">=</span> <span class="va">log</span>, `log(weight_infinity)` <span class="op">=</span></span>
+<span>    <span class="va">log</span>, `log(growth_coefficient)` <span class="op">=</span> <span class="va">log</span>, `log(natural_mortality)` <span class="op">=</span> <span class="va">log</span>,</span>
 <span>    `log(length_maturity)` <span class="op">=</span> <span class="va">log</span>, `log(age_max)` <span class="op">=</span> <span class="va">log</span>, `log(age_maturity)` <span class="op">=</span> <span class="va">log</span>,</span>
 <span>    temperature <span class="op">=</span> <span class="fu">base</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/base/identity.html" class="external-link">identity</a></span><span class="op">)</span>,</span>
-<span>  backtransform_function <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>`log(length_infinity)` <span class="op">=</span> <span class="va">exp</span>, `log(weight_infinity)` <span class="op">=</span></span>
-<span>    <span class="va">exp</span>, `log(growth_coefficient)` <span class="op">=</span> <span class="va">exp</span>, `log(natural_mortality)` <span class="op">=</span> <span class="va">exp</span>,</span>
+<span>  backtransform_function_list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>`log(length_infinity)` <span class="op">=</span> <span class="va">exp</span>, `log(weight_infinity)`</span>
+<span>    <span class="op">=</span> <span class="va">exp</span>, `log(growth_coefficient)` <span class="op">=</span> <span class="va">exp</span>, `log(natural_mortality)` <span class="op">=</span> <span class="va">exp</span>,</span>
 <span>    `log(length_maturity)` <span class="op">=</span> <span class="va">exp</span>, `log(age_max)` <span class="op">=</span> <span class="va">exp</span>, `log(age_maturity)` <span class="op">=</span> <span class="va">exp</span>,</span>
 <span>    temperature <span class="op">=</span> <span class="fu">base</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/base/identity.html" class="external-link">identity</a></span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div><p></p></div>

@@ -58,7 +58,7 @@
     </div>
     <div class="section level2">
     <h2 id="super-class">Super class<a class="anchor" aria-label="anchor" href="#super-class"></a></h2>
-    <p><code>LHTPicker::MixinUtilities</code> -&gt; <code>TaxaLHTCollector</code></p>
+    <p><code><a href="MixinUtilities.html">LHTpicker::MixinUtilities</a></code> -&gt; <code>TaxaLHTCollector</code></p>
     </div>
     <div class="section level2">
     <h2 id="methods">Methods<a class="anchor" aria-label="anchor" href="#methods"></a></h2>
@@ -69,9 +69,9 @@
 <ul><li><p><a href="#method-TaxaLHTCollector-new"><code>TaxaLHTCollector$new()</code></a></p></li>
 <li><p><a href="#method-TaxaLHTCollector-collect_and_backtransform"><code>TaxaLHTCollector$collect_and_backtransform()</code></a></p></li>
 <li><p><a href="#method-TaxaLHTCollector-clone"><code>TaxaLHTCollector$clone()</code></a></p></li>
-</ul></div><p><details open><summary>Inherited methods</summary><ul><li><span class="pkg-link" data-pkg="LHTPicker" data-topic="MixinUtilities" data-id="apply_func_to_df"><a href="NA#method-apply_func_to_df"><code>LHTPicker::MixinUtilities$apply_func_to_df()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="LHTPicker" data-topic="MixinUtilities" data-id="create_empty_dataframe"><a href="NA#method-create_empty_dataframe"><code>LHTPicker::MixinUtilities$create_empty_dataframe()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="LHTPicker" data-topic="MixinUtilities" data-id="list_of_vectors_to_dataframe"><a href="NA#method-list_of_vectors_to_dataframe"><code>LHTPicker::MixinUtilities$list_of_vectors_to_dataframe()</code></a></span></li>
+</ul></div><p><details open><summary>Inherited methods</summary><ul><li><span class="pkg-link" data-pkg="LHTpicker" data-topic="MixinUtilities" data-id="apply_func_to_df"><a href="MixinUtilities.html#method-apply_func_to_df"><code>LHTpicker::MixinUtilities$apply_func_to_df()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="LHTpicker" data-topic="MixinUtilities" data-id="create_empty_dataframe"><a href="MixinUtilities.html#method-create_empty_dataframe"><code>LHTpicker::MixinUtilities$create_empty_dataframe()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="LHTpicker" data-topic="MixinUtilities" data-id="list_of_vectors_to_dataframe"><a href="MixinUtilities.html#method-list_of_vectors_to_dataframe"><code>LHTpicker::MixinUtilities$list_of_vectors_to_dataframe()</code></a></span></li>
 </ul></details></p><hr><a id="method-TaxaLHTCollector-new"></a><div class="section">
 <h3 id="method-new-">Method <code>new()</code><a class="anchor" aria-label="anchor" href="#method-new-"></a></h3>
 <p>Initialise the TaxaLHTCollector</p><div class="section">
@@ -79,7 +79,7 @@
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va"><a href="../reference/TaxaLHTCollector.html">TaxaLHTCollector</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
 <span>  <span class="va">master_db</span>,</span>
 <span>  <span class="va">lht_names</span>,</span>
-<span>  <span class="va">back_transform_matrix</span>,</span>
+<span>  <span class="va">backtransform_function_list</span>,</span>
 <span>  <span class="va">wanted_lht_df</span></span>
 <span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
@@ -94,7 +94,7 @@
 <dd><p>list of user-defined LHT names associated with their FishLife's counterparts</p></dd>
 
 
-<dt><code>back_transform_matrix</code></dt>
+<dt><code>backtransform_function_list</code></dt>
 <dd><p>list of backward-transformation functions to be applied on obtained LHT from FishLife</p></dd>
 
 
