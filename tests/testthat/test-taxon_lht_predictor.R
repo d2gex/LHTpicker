@@ -22,7 +22,7 @@ test_that("Predict LHT for a specific taxa", {
     estimated_lhts,
     estimated_covariance,
     input_lhts,
-    fishlife_context$transform_function
+    fishlife_context$transform_function_list
   )
   new_lht_matrix <- t_predictor$generate_new_lht_matrix()
   estimated_lhts <- t_predictor$predict()

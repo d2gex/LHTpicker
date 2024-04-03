@@ -6,21 +6,21 @@ TaxonUpdateExtractor <- R6::R6Class("TaxonUpdateExtractor", public = list(
   update_prefix = NULL,
   predicted_results = NULL,
   lht_names = NULL,
-  back_transform_matrix = NULL,
+  backtransform_function_list = NULL,
   # // @formatter:off
   #' @description
   #' Initialise the TaxonPredictionExtractor
   #'
   #' @param update_prefix string to be added as prefix to the column names keeping the obtained new LHT values
   #' @param lht_names list of user-defined LHT names associated with their FishLife's counterparts
-  #' @param back_transform_matrix list of backward-transformation functions to be applied on obtained LHT from FishLife
+  #' @param backtransform_function_list list of backward-transformation functions to be applied on obtained LHT from FishLife
   #' @param predicted_results matrix of predicted results from FishLife
   #' @export
   # // @formatter:on
-  initialize = function(update_prefix, lht_names, back_transform_matrix, predicted_results) {
+  initialize = function(update_prefix, lht_names, backtransform_function_list, predicted_results) {
     self$update_prefix <- update_prefix
     self$lht_names <- lht_names
-    self$back_transform_matrix <- back_transform_matrix
+    self$backtransform_function_list <- backtransform_function_list
     self$predicted_results <- predicted_results
   },
   # // @formatter:off
@@ -54,7 +54,7 @@ TaxonUpdateExtractor <- R6::R6Class("TaxonUpdateExtractor", public = list(
     for (prefixed_lht in names(lht_names)) {
       result_key <- lht_names[[prefixed_lht]]
       result_value <- as.numeric(self$predicted_results[result_key,])
-      back_func <- self$back_transform_matrix[[result_key]]
+      back_func <- self$backtransform_function_list[[result_key]]
       backtransformed_results[[prefixed_lht]] <- back_func(result_value)
     }
     return(as.data.frame(backtransformed_results))

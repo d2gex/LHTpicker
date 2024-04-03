@@ -5,7 +5,7 @@
 TaxaUpdateExtractor <- R6::R6Class("TaxaUpdateExtractor", inherit = MixinUtilities, public = list(
   update_prefix = NULL,
   lht_names = NULL,
-  back_transform_matrix = NULL,
+  backtransform_function_list = NULL,
   predicting_lht_df = NULL,
   updated_lht_list = NULL,
   # // @formatter:off
@@ -14,15 +14,15 @@ TaxaUpdateExtractor <- R6::R6Class("TaxaUpdateExtractor", inherit = MixinUtiliti
   #'
   #' @param update_prefix string to be added as prefix to the column names keeping the obtained new LHT values
   #' @param lht_names list of user-defined LHT names associated with their FishLife's counterparts
-  #' @param back_transform_matrix list of backward-transformation functions to be applied on obtained LHT from FishLife
+  #' @param backtransform_function_list list of backward-transformation functions to be applied on obtained LHT from FishLife
   #' @param predicting_lht_df dataframe keeping the original inputted LHTs per taxon
   #' @param updated_lht_list list of updated LHTs per taxon obtained from Fishlife
   #' @export
   # // @formatter:on
-  initialize = function(update_prefix, lht_names, back_transform_matrix, predicting_lht_df, updated_lht_list) {
+  initialize = function(update_prefix, lht_names, backtransform_function_list, predicting_lht_df, updated_lht_list) {
     self$update_prefix <- update_prefix
     self$lht_names <- lht_names
-    self$back_transform_matrix <- back_transform_matrix
+    self$backtransform_function_list <- backtransform_function_list
     self$predicting_lht_df <- predicting_lht_df
     self$updated_lht_list <- updated_lht_list
   },
@@ -38,7 +38,7 @@ TaxaUpdateExtractor <- R6::R6Class("TaxaUpdateExtractor", inherit = MixinUtiliti
       predicted_taxon_lht <- (self$updated_lht_list[[ind_species]])$updatemean_j
       tax_extractor <- TaxonUpdateExtractor$new(self$update_prefix,
                                                 self$lht_names,
-                                                self$back_transform_matrix,
+                                                self$backtransform_function_list,
                                                 predicted_taxon_lht)
       taxon_details <- tax_extractor$extract_and_backtransform()
       results <- private$update_lht_results(results, taxon_details, ind_species)

@@ -20,14 +20,14 @@ test_that("Extraction and backtransformation of predicted LHT values", {
     estimated_lhts,
     estimated_covariance,
     input_lhts,
-    fishlife_context$transform_function
+    fishlife_context$transform_function_list
   )
   estimated_lhts <- t_predictor$predict()
 
   # (3) ... Extract and Transform ...
   t_backtransformer <- TaxonUpdateExtractor$new(fishlife_context$updated_prefix,
                                                 lht_names,
-                                                fishlife_context$backtransform_function,
+                                                fishlife_context$backtransform_function_list,
                                                 estimated_lhts$updatemean_j)
   results <- t_backtransformer$extract_and_backtransform()
   expect_true(all(stringr::str_detect(names(results), fishlife_context$updated_prefix)))

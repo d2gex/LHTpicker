@@ -13,17 +13,17 @@ FishlifeLHTNameSpace <- R6::R6Class("FishlifeLHTNameSpace", public = list(
   # // @formatter:on
   lht_names = NULL,
   # // @formatter:off
-  #' @field transform_function Forward function conversion required for each user-defined parameter.
+  #' @field transform_function_list Forward function conversion required for each user-defined parameter.
   # // @formatter:on
-  transform_function = NULL,
+  transform_function_list = NULL,
   # // @formatter:off
-  #' @field backtransform_function Backward function conversion required for each obtained LHT value.
+  #' @field backtransform_function_list Backward function conversion required for each obtained LHT value.
   # // @formatter:on
-  backtransform_function = NULL,
-    #' @description
-    #' Initialise Fishlife Context class
-    #'
-    #' @export
+  backtransform_function_list = NULL,
+          #' @description
+          #' Initialise Fishlife Context class
+          #'
+          #' @export
   initialize = function(updated_prefix = 'updated',
                         lht_names = list(
                           Linf = "log(length_infinity)",
@@ -35,7 +35,7 @@ FishlifeLHTNameSpace <- R6::R6Class("FishlifeLHTNameSpace", public = list(
                           Amat = "log(age_maturity)",
                           Temperature = "temperature"
                         ),
-                        transform_function = list(
+                        transform_function_list = list(
                           "log(length_infinity)" = log,
                           "log(weight_infinity)" = log,
                           "log(growth_coefficient)" = log,
@@ -45,7 +45,7 @@ FishlifeLHTNameSpace <- R6::R6Class("FishlifeLHTNameSpace", public = list(
                           "log(age_maturity)" = log,
                           "temperature" = base::identity
                         ),
-                        backtransform_function = list(
+                        backtransform_function_list = list(
                           "log(length_infinity)" = exp,
                           "log(weight_infinity)" = exp,
                           "log(growth_coefficient)" = exp,
@@ -57,8 +57,8 @@ FishlifeLHTNameSpace <- R6::R6Class("FishlifeLHTNameSpace", public = list(
                         )) {
     self$updated_prefix <- updated_prefix
     self$lht_names <- lht_names
-    self$transform_function <- transform_function
-    self$backtransform_function <- backtransform_function
+    self$transform_function_list <- transform_function_list
+    self$backtransform_function_list <- backtransform_function_list
   }
 ))
 

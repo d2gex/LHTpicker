@@ -5,7 +5,7 @@
 TaxaLHTCollector <- R6::R6Class("TaxaLHTCollector", inherit = MixinUtilities, public = list(
   master_db = NULL,
   lht_names = NULL,
-  back_transform_matrix = NULL,
+  backtransform_function_list = NULL,
   wanted_lht_df = NULL,
   # // @formatter:off
   #' @description
@@ -13,14 +13,14 @@ TaxaLHTCollector <- R6::R6Class("TaxaLHTCollector", inherit = MixinUtilities, pu
   #'
   #' @param master_db Fishlife database
   #' @param lht_names list of user-defined LHT names associated with their FishLife's counterparts
-  #' @param back_transform_matrix list of backward-transformation functions to be applied on obtained LHT from FishLife
+  #' @param backtransform_function_list list of backward-transformation functions to be applied on obtained LHT from FishLife
   #' @param wanted_lht_df dataframe holding the wanted taxa details as rows and LHT as columns
   #' @export
   # // @formatter:on
-  initialize = function(master_db, lht_names, back_transform_matrix, wanted_lht_df) {
+  initialize = function(master_db, lht_names, backtransform_function_list, wanted_lht_df) {
     self$master_db <- master_db
     self$lht_names <- lht_names
-    self$back_transform_matrix <- back_transform_matrix
+    self$backtransform_function_list <- backtransform_function_list
     self$wanted_lht_df <- wanted_lht_df
   },
   # // @formatter:off
@@ -74,7 +74,7 @@ TaxaLHTCollector <- R6::R6Class("TaxaLHTCollector", inherit = MixinUtilities, pu
     for (fish_lht_name in names(taxon_details)) {
       u_lht_name <- inverted_lht_names[[fish_lht_name]]
       lht_value <- taxon_details[fish_lht_name]
-      back_func <- self$back_transform_matrix[[fish_lht_name]]
+      back_func <- self$backtransform_function_list[[fish_lht_name]]
       results[results$taxon == taxon_name, u_lht_name] <- back_func(lht_value)
     }
     return(results)
