@@ -10,7 +10,7 @@ matrix-form LHT values to be passed on to FishLife
 Class that given some LHTs will fetch their predicted version according to FishLife covariance
 }
 \section{Super class}{
-\code{\link[LHTPicker:MixinUtilities]{LHTPicker::MixinUtilities}} -> \code{TaxonLHTPredictor}
+\code{\link[LHTpicker:MixinUtilities]{LHTpicker::MixinUtilities}} -> \code{TaxonLHTPredictor}
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
@@ -32,9 +32,9 @@ could end up having additional fields that the overall covariance matrix does no
 \if{html}{\out{
 <details open><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="LHTPicker" data-topic="MixinUtilities" data-id="apply_func_to_df"><a href='../../LHTPicker/html/MixinUtilities.html#method-MixinUtilities-apply_func_to_df'><code>LHTPicker::MixinUtilities$apply_func_to_df()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="LHTPicker" data-topic="MixinUtilities" data-id="create_empty_dataframe"><a href='../../LHTPicker/html/MixinUtilities.html#method-MixinUtilities-create_empty_dataframe'><code>LHTPicker::MixinUtilities$create_empty_dataframe()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="LHTPicker" data-topic="MixinUtilities" data-id="list_of_vectors_to_dataframe"><a href='../../LHTPicker/html/MixinUtilities.html#method-MixinUtilities-list_of_vectors_to_dataframe'><code>LHTPicker::MixinUtilities$list_of_vectors_to_dataframe()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="LHTpicker" data-topic="MixinUtilities" data-id="apply_func_to_df"><a href='../../LHTpicker/html/MixinUtilities.html#method-MixinUtilities-apply_func_to_df'><code>LHTpicker::MixinUtilities$apply_func_to_df()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="LHTpicker" data-topic="MixinUtilities" data-id="create_empty_dataframe"><a href='../../LHTpicker/html/MixinUtilities.html#method-MixinUtilities-create_empty_dataframe'><code>LHTpicker::MixinUtilities$create_empty_dataframe()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="LHTpicker" data-topic="MixinUtilities" data-id="list_of_vectors_to_dataframe"><a href='../../LHTpicker/html/MixinUtilities.html#method-MixinUtilities-list_of_vectors_to_dataframe'><code>LHTpicker::MixinUtilities$list_of_vectors_to_dataframe()</code></a></span></li>
 </ul>
 </details>
 }}

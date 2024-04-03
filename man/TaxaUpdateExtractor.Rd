@@ -12,7 +12,7 @@ updated dataframe of results with both the original and updated LHT values
 Class that extracts and transform predicted values of LHTs for multiple species obtained from FishLife
 }
 \section{Super class}{
-\code{\link[LHTPicker:MixinUtilities]{LHTPicker::MixinUtilities}} -> \code{TaxaUpdateExtractor}
+\code{\link[LHTpicker:MixinUtilities]{LHTpicker::MixinUtilities}} -> \code{TaxaUpdateExtractor}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -25,9 +25,9 @@ Class that extracts and transform predicted values of LHTs for multiple species 
 \if{html}{\out{
 <details open><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="LHTPicker" data-topic="MixinUtilities" data-id="apply_func_to_df"><a href='../../LHTPicker/html/MixinUtilities.html#method-MixinUtilities-apply_func_to_df'><code>LHTPicker::MixinUtilities$apply_func_to_df()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="LHTPicker" data-topic="MixinUtilities" data-id="create_empty_dataframe"><a href='../../LHTPicker/html/MixinUtilities.html#method-MixinUtilities-create_empty_dataframe'><code>LHTPicker::MixinUtilities$create_empty_dataframe()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="LHTPicker" data-topic="MixinUtilities" data-id="list_of_vectors_to_dataframe"><a href='../../LHTPicker/html/MixinUtilities.html#method-MixinUtilities-list_of_vectors_to_dataframe'><code>LHTPicker::MixinUtilities$list_of_vectors_to_dataframe()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="LHTpicker" data-topic="MixinUtilities" data-id="apply_func_to_df"><a href='../../LHTpicker/html/MixinUtilities.html#method-MixinUtilities-apply_func_to_df'><code>LHTpicker::MixinUtilities$apply_func_to_df()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="LHTpicker" data-topic="MixinUtilities" data-id="create_empty_dataframe"><a href='../../LHTpicker/html/MixinUtilities.html#method-MixinUtilities-create_empty_dataframe'><code>LHTpicker::MixinUtilities$create_empty_dataframe()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="LHTpicker" data-topic="MixinUtilities" data-id="list_of_vectors_to_dataframe"><a href='../../LHTpicker/html/MixinUtilities.html#method-MixinUtilities-list_of_vectors_to_dataframe'><code>LHTpicker::MixinUtilities$list_of_vectors_to_dataframe()</code></a></span></li>
 </ul>
 </details>
 }}
@@ -40,7 +40,7 @@ Initialise the TaxaPredictionExtractor
 \if{html}{\out{<div class="r">}}\preformatted{TaxaUpdateExtractor$new(
   update_prefix,
   lht_names,
-  back_transform_matrix,
+  backtransform_function_list,
   predicting_lht_df,
   updated_lht_list
 )}\if{html}{\out{</div>}}
@@ -53,7 +53,7 @@ Initialise the TaxaPredictionExtractor
 
 \item{\code{lht_names}}{list of user-defined LHT names associated with their FishLife's counterparts}
 
-\item{\code{back_transform_matrix}}{list of backward-transformation functions to be applied on obtained LHT from FishLife}
+\item{\code{backtransform_function_list}}{list of backward-transformation functions to be applied on obtained LHT from FishLife}
 
 \item{\code{predicting_lht_df}}{dataframe keeping the original inputted LHTs per taxon}
 

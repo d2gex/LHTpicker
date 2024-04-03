@@ -26,7 +26,7 @@ Initialise the TaxonPredictionExtractor
 \if{html}{\out{<div class="r">}}\preformatted{TaxonUpdateExtractor$new(
   update_prefix,
   lht_names,
-  back_transform_matrix,
+  backtransform_function_list,
   predicted_results
 )}\if{html}{\out{</div>}}
 }
@@ -38,7 +38,7 @@ Initialise the TaxonPredictionExtractor
 
 \item{\code{lht_names}}{list of user-defined LHT names associated with their FishLife's counterparts}
 
-\item{\code{back_transform_matrix}}{list of backward-transformation functions to be applied on obtained LHT from FishLife}
+\item{\code{backtransform_function_list}}{list of backward-transformation functions to be applied on obtained LHT from FishLife}
 
 \item{\code{predicted_results}}{matrix of predicted results from FishLife}
 }
