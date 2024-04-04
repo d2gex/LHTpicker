@@ -1,5 +1,5 @@
 test_that("multiplication works", {
-  t_collector <- TaxaLHTCollector$new(testing_db,
+  t_collector <- PredictedLHTPicker$new(testing_db,
                                       fishlife_context$lht_names,
                                       fishlife_context$backtransform_function_list,
                                       wanted_taxon_details)

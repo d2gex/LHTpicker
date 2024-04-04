@@ -1,15 +1,15 @@
 #' Multiple Taxon Collector class
 #'
 #' @description
-#' Class that collect and transform predicted values of LHTs for multiple species obtained from FishLife
-TaxaLHTCollector <- R6::R6Class("TaxaLHTCollector", inherit = MixinUtilities, public = list(
+#' Fetch, transform and build the predicted LHT dataframe for multiple species obtained from FishLife
+PredictedLHTPicker <- R6::R6Class("PredictedLHTPicker", inherit = MixinUtilities, public = list(
   master_db = NULL,
   lht_names = NULL,
   backtransform_function_list = NULL,
   wanted_lht_df = NULL,
   # // @formatter:off
   #' @description
-  #' Initialise the TaxaLHTCollector
+  #' Initialise the PredictedLHTPicker
   #'
   #' @param master_db Fishlife database
   #' @param lht_names list of user-defined LHT names associated with their FishLife's counterparts
