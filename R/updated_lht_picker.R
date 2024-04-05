@@ -5,9 +5,9 @@
 UpdatedLHTPicker <- R6::R6Class("UpdatedLHTPicker", public = list(
   master_db = NULL,
   predicting_lht_df = NULL,
-  update_prefix = NULL,
+  updated_prefix = NULL,
+  transform_function_list = NULL,
   backtransform_function_list = NULL,
-  func_domains = NULL,
   lht_names = NULL,
   # // @formatter:off
   #' @description
@@ -23,13 +23,13 @@ UpdatedLHTPicker <- R6::R6Class("UpdatedLHTPicker", public = list(
   # // @formatter:off
   initialize = function(master_db,
                         predicting_lht_df,
-                        update_prefix,
+                        updated_prefix,
                         transform_function_list,
                         backtransform_function_list,
                         lht_names = NULL) {
     self$master_db <- master_db
     self$predicting_lht_df <- predicting_lht_df
-    self$update_prefix <- update_prefix
+    self$updated_prefix <- updated_prefix
     self$transform_function_list <- transform_function_list
     self$backtransform_function_list <- backtransform_function_list
     self$lht_names <- lht_names
@@ -49,8 +49,8 @@ UpdatedLHTPicker <- R6::R6Class("UpdatedLHTPicker", public = list(
       self$lht_names
     )
     updated_lhts <- u_lht_gen$update()
-    t_update_extractor <- LHTpicker::TaxaUpdateExtractor$new(
-      self$update_prefix,
+    t_update_extractor <- TaxaUpdateExtractor$new(
+      self$updated_prefix,
       self$lht_names,
       self$backtransform_function_list,
       self$predicting_lht_df,
