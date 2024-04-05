@@ -1,8 +1,8 @@
 test_that("multiplication works", {
   t_collector <- PredictedLHTPicker$new(testing_db,
-                                      fishlife_context$lht_names,
-                                      fishlife_context$backtransform_function_list,
-                                      wanted_taxon_details)
+                                        fishlife_context$lht_names,
+                                        fishlife_context$backtransform_function_list,
+                                        wanted_taxon_details)
   all_lhts_df <- t_collector$collect_and_backtransform()
 
   non_logarithmic_scale <- 10
