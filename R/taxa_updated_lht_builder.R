@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Class that extracts and transform predicted values of LHTs for multiple species obtained from FishLife
-TaxaUpdateExtractor <- R6::R6Class("TaxaUpdateExtractor", inherit = MixinUtilities, public = list(
+TaxaUpdatedLHTBuilder <- R6::R6Class("TaxaUpdatedLHTBuilder", inherit = MixinUtilities, public = list(
   update_prefix = NULL,
   lht_names = NULL,
   backtransform_function_list = NULL,

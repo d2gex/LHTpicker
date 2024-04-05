@@ -49,7 +49,7 @@ UpdatedLHTPicker <- R6::R6Class("UpdatedLHTPicker", public = list(
       self$lht_names
     )
     updated_lhts <- u_lht_gen$update()
-    t_update_extractor <- TaxaUpdateExtractor$new(
+    t_update_extractor <- TaxaUpdatedLHTBuilder$new(
       self$updated_prefix,
       self$lht_names,
       self$backtransform_function_list,
