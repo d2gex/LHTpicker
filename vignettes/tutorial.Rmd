@@ -34,16 +34,16 @@ taxon_lhts_to_fetch <- readRDS("vignettes/data/wanted_taxon_details.rds")
 head(taxon_lhts_to_fetch)
 ```
 
-## 1.2 LHT fetching
+## 1.2 Fetching predicted LHTs
 ```{r}
-t_collector <- TaxaLHTCollector$new(FishLife::FishBase_and_Morphometrics,
-                                    fishlife_context$lht_names,
-                                    fishlife_context$backtransform_function_list,
-                                    taxon_lhts_to_fetch)
-wanted_lht_df <- t_collector$collect_and_backtransform()
-head(wanted_lht_df)
+p_lht_picker <- PredictedLHTPicker$new(FishLife::FishBase_and_Morphometrics,
+                                       fishlife_context$lht_names,
+                                       fishlife_context$backtransform_function_list,
+                                       taxon_lhts_to_fetch)
+predicted_lht_df <- p_lht_picker$collect_and_backtransform()
+head(predicted_lht_df)
 ```
-# 2 Fetch updated LHTs given new LHT data
+# 2 Fetch updated LHTs given new data
 
 ## 2.1 Inputted predicting taxa details
 A csv file with the taxon names you are after and the **wanted-to-update** LHTs is required as shown below
@@ -51,27 +51,17 @@ A csv file with the taxon names you are after and the **wanted-to-update** LHTs 
 taxon_lhts_to_update <- readRDS("vignettes/data/wanted_update_taxon_details.rds")
 head(taxon_lhts_to_update)
 ```
-## 2.2 LHT Update
+## 2.2 Fetching updated LHTs
 ```{r}
-p_lht_gen <- UpdatedLHTGenerator$new(
+
+u_lht_picker <- UpdatedLHTPicker$new(
   FishLife::FishBase_and_Morphometrics,
   taxon_lhts_to_update,
+  fishlife_context$updated_prefix,
   fishlife_context$transform_function_list,
+  fishlife_context$backtransform_function_list,
   fishlife_context$lht_names
 )
-updated_lhts <- p_lht_gen$update()
-```
-## 2.3 Rebuild LHT dataframe
-
-The dataframe that held the predicting LHT values is modified with the new updated values. New columns are added and prefixed by a predefined tag stored in `fishlife_context$updated_prefix`
-```{r}
-taxa_extractor <- TaxaUpdateExtractor$new(
-  fishlife_context$updated_prefix,
-  fishlife_context$lht_names,
-  fishlife_context$backtransform_function_list,
-  taxon_lhts_to_update,
-  updated_lhts
-)
-updated_lht_df <- taxa_extractor$extract_and_backtransform()
+updated_lht_df <- u_lht_picker$pick_and_transform()
 head(updated_lht_df)
 ```
