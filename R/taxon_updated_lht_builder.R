@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Class that extracts and transform predicted values of LHTs for a single species obtained from FishLife
-TaxonUpdateExtractor <- R6::R6Class("TaxonUpdateExtractor", public = list(
+TaxonUpdatedLHTBuilder <- R6::R6Class("TaxonUpdatedLHTBuilder", public = list(
   update_prefix = NULL,
   predicted_results = NULL,
   lht_names = NULL,

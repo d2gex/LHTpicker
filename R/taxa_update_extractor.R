@@ -36,10 +36,10 @@ TaxaUpdateExtractor <- R6::R6Class("TaxaUpdateExtractor", inherit = MixinUtiliti
     results <- self$predicting_lht_df
     for (ind_species in names(self$updated_lht_list)) {
       predicted_taxon_lht <- (self$updated_lht_list[[ind_species]])$updatemean_j
-      tax_extractor <- TaxonUpdateExtractor$new(self$update_prefix,
-                                                self$lht_names,
-                                                self$backtransform_function_list,
-                                                predicted_taxon_lht)
+      tax_extractor <- TaxonUpdatedLHTBuilder$new(self$update_prefix,
+                                                  self$lht_names,
+                                                  self$backtransform_function_list,
+                                                  predicted_taxon_lht)
       taxon_details <- tax_extractor$extract_and_backtransform()
       results <- private$update_lht_results(results, taxon_details, ind_species)
     }
