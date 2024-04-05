@@ -13,7 +13,7 @@ Fetch, transform and build a dataframe with the updated LHT values per taxon obt
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-UpdatedLHTPicker-new}{\code{UpdatedLHTPicker$new()}}
-\item \href{#method-UpdatedLHTPicker-pick_and_transform}{\code{UpdatedLHTPicker$pick_and_transform()}}
+\item \href{#method-UpdatedLHTPicker-pick_and_backtransform}{\code{UpdatedLHTPicker$pick_and_backtransform()}}
 \item \href{#method-UpdatedLHTPicker-clone}{\code{UpdatedLHTPicker$clone()}}
 }
 }
@@ -52,12 +52,12 @@ Initialise the UpdatedLHTPicker class
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-UpdatedLHTPicker-pick_and_transform"></a>}}
-\if{latex}{\out{\hypertarget{method-UpdatedLHTPicker-pick_and_transform}{}}}
-\subsection{Method \code{pick_and_transform()}}{
+\if{html}{\out{<a id="method-UpdatedLHTPicker-pick_and_backtransform"></a>}}
+\if{latex}{\out{\hypertarget{method-UpdatedLHTPicker-pick_and_backtransform}{}}}
+\subsection{Method \code{pick_and_backtransform()}}{
 Build a dataframe with the updated LHT for each wanted taxon as
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{UpdatedLHTPicker$pick_and_transform()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{UpdatedLHTPicker$pick_and_backtransform()}\if{html}{\out{</div>}}
 }
 
 }

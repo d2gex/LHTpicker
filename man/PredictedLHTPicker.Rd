@@ -18,7 +18,7 @@ Fetch, transform and build the predicted LHT dataframe for multiple species obta
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-PredictedLHTPicker-new}{\code{PredictedLHTPicker$new()}}
-\item \href{#method-PredictedLHTPicker-collect_and_backtransform}{\code{PredictedLHTPicker$collect_and_backtransform()}}
+\item \href{#method-PredictedLHTPicker-pick_and_backtransform}{\code{PredictedLHTPicker$pick_and_backtransform()}}
 \item \href{#method-PredictedLHTPicker-clone}{\code{PredictedLHTPicker$clone()}}
 }
 }
@@ -60,12 +60,12 @@ Initialise the PredictedLHTPicker
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-PredictedLHTPicker-collect_and_backtransform"></a>}}
-\if{latex}{\out{\hypertarget{method-PredictedLHTPicker-collect_and_backtransform}{}}}
-\subsection{Method \code{collect_and_backtransform()}}{
-Collect and backtransform all LHT values per taxon that have beed obtained from Fishlife
+\if{html}{\out{<a id="method-PredictedLHTPicker-pick_and_backtransform"></a>}}
+\if{latex}{\out{\hypertarget{method-PredictedLHTPicker-pick_and_backtransform}{}}}
+\subsection{Method \code{pick_and_backtransform()}}{
+Pick and backtransform all LHT values per taxon that have beed obtained from Fishlife
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{PredictedLHTPicker$collect_and_backtransform()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{PredictedLHTPicker$pick_and_backtransform()}\if{html}{\out{</div>}}
 }
 
 }
