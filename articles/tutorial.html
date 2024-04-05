@@ -101,7 +101,7 @@
 <span>                                       <span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span>,</span>
 <span>                                       <span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function_list</span>,</span>
 <span>                                       <span class="va">taxon_lhts_to_fetch</span><span class="op">)</span></span>
-<span><span class="va">predicted_lht_df</span> <span class="op">&lt;-</span> <span class="va">p_lht_picker</span><span class="op">$</span><span class="fu">collect_and_backtransform</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">predicted_lht_df</span> <span class="op">&lt;-</span> <span class="va">p_lht_picker</span><span class="op">$</span><span class="fu">pick_and_backtransform</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">predicted_lht_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                   taxon     Linf      Winf         K      L50         M</span></span>
 <span><span class="co">#&gt; 1    Trisopterus luscus 43.86770  833.9878 0.3737931 19.52203 0.5981946</span></span>
@@ -139,7 +139,7 @@
 <span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function_list</span>,</span>
 <span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">updated_lht_df</span> <span class="op">&lt;-</span> <span class="va">u_lht_picker</span><span class="op">$</span><span class="fu">pick_and_transform</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">updated_lht_df</span> <span class="op">&lt;-</span> <span class="va">u_lht_picker</span><span class="op">$</span><span class="fu">pick_and_backtransform</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">updated_lht_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                   taxon   Linf  Winf     K   L50     M Amat Amax Temperature</span></span>
 <span><span class="co">#&gt; 1    Trisopterus luscus  42.41   921 0.210 19.45 0.254   NA    9        14.3</span></span>
