@@ -3,7 +3,7 @@ test_that("Pick predicted LHT values at once", {
                                         fishlife_context$lht_names,
                                         fishlife_context$backtransform_function_list,
                                         wanted_taxon_details)
-  all_lhts_df <- t_collector$collect_and_backtransform()
+  all_lhts_df <- t_collector$pick_and_backtransform()
 
   non_logarithmic_scale <- 10
 

@@ -7,7 +7,7 @@ test_that("Pick updated LHT values given new data at once", {
     fishlife_context$backtransform_function_list,
     fishlife_context$lht_names
   )
-  updated_lht_df <- u_lht_picker$pick_and_transform()
+  updated_lht_df <- u_lht_picker$pick_and_backtransform()
   non_logarithmic_scale <- 10
 
   expect_true(nrow(updated_lht_df) == 2)

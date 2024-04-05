@@ -25,11 +25,11 @@ PredictedLHTPicker <- R6::R6Class("PredictedLHTPicker", inherit = MixinUtilities
   },
   # // @formatter:off
   #' @description
-  #' Collect and backtransform all LHT values per taxon that have beed obtained from Fishlife
+  #' Pick and backtransform all LHT values per taxon that have beed obtained from Fishlife
   #'
   #' @returns dataframe that keeps the LHT values per taxon
   # // @formatter:on
-  collect_and_backtransform = function() {
+  pick_and_backtransform = function() {
     results <- self$wanted_lht_df
     for (ind_taxon in self$wanted_lht_df$taxon) {
       taxon_grabber <- TaxonLHTCollector$new(self$master_db, ind_taxon)

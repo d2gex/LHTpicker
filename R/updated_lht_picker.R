@@ -41,7 +41,7 @@ UpdatedLHTPicker <- R6::R6Class("UpdatedLHTPicker", public = list(
   #' @returns a dataframe with the predicting and updated LHTs. The latter are prefixed with a keyword.
   #' @export
   # // @formatter:on
-  pick_and_transform = function() {
+  pick_and_backtransform = function() {
     u_lht_gen <- UpdatedLHTGenerator$new(
       self$master_db,
       self$predicting_lht_df,

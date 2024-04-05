@@ -40,7 +40,7 @@ p_lht_picker <- PredictedLHTPicker$new(FishLife::FishBase_and_Morphometrics,
                                        fishlife_context$lht_names,
                                        fishlife_context$backtransform_function_list,
                                        taxon_lhts_to_fetch)
-predicted_lht_df <- p_lht_picker$collect_and_backtransform()
+predicted_lht_df <- p_lht_picker$pick_and_backtransform()
 head(predicted_lht_df)
 ```
 # 2 Fetch updated LHTs given new data
@@ -62,6 +62,6 @@ u_lht_picker <- UpdatedLHTPicker$new(
   fishlife_context$backtransform_function_list,
   fishlife_context$lht_names
 )
-updated_lht_df <- u_lht_picker$pick_and_transform()
+updated_lht_df <- u_lht_picker$pick_and_backtransform()
 head(updated_lht_df)
 ```
