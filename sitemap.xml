@@ -31,6 +31,9 @@
     <loc>https://d2gex.github.io/LHTpicker/reference/TaxaUpdateExtractor.html</loc>
   </url>
   <url>
+    <loc>https://d2gex.github.io/LHTpicker/reference/TaxaUpdatedLHTGetter.html</loc>
+  </url>
+  <url>
     <loc>https://d2gex.github.io/LHTpicker/reference/TaxonPredictedLHTGetter.html</loc>
   </url>
   <url>
@@ -38,9 +41,6 @@
   </url>
   <url>
     <loc>https://d2gex.github.io/LHTpicker/reference/TaxonUpdatedLHTGetter.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/reference/UpdatedLHTGenerator.html</loc>
   </url>
   <url>
     <loc>https://d2gex.github.io/LHTpicker/reference/UpdatedLHTPicker.html</loc>
