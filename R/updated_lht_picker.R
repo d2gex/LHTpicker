@@ -1,3 +1,7 @@
+#' Taxa's updated LHT picker
+#'
+#' @description
+#' Fetch, transform and build a dataframe with the updated LHT values per taxon obtained from FishLife
 UpdatedLHTPicker <- R6::R6Class("UpdatedLHTPicker", public = list(
   master_db = NULL,
   predicting_lht_df = NULL,
@@ -5,6 +9,18 @@ UpdatedLHTPicker <- R6::R6Class("UpdatedLHTPicker", public = list(
   backtransform_function_list = NULL,
   func_domains = NULL,
   lht_names = NULL,
+  # // @formatter:off
+  #' @description
+  #' Initialise the UpdatedLHTPicker class
+  #'
+  #' @param master_db Fishlife database
+  #' @param predicting_lht_df dataframe keeping the original inputted LHTs per taxon
+  #' @param update_prefix string to be added as prefix to the column names keeping the obtained new LHT values
+  #' @param transform_function_list list of transforming function which names must conform to FishLife's expectations
+  #' @param backtransform_function_list list of backward-transformation functions to be applied on obtained LHT from FishLife
+  #' @param lht_names list of user-defined LHT names associated with their FishLife's counterparts
+  #' @export
+  # // @formatter:off
   initialize = function(master_db,
                         predicting_lht_df,
                         update_prefix,
@@ -18,6 +34,13 @@ UpdatedLHTPicker <- R6::R6Class("UpdatedLHTPicker", public = list(
     self$backtransform_function_list <- backtransform_function_list
     self$lht_names <- lht_names
   },
+  # // @formatter:off
+  #' @description
+  #'
+  #' Build a dataframe with the updated LHT for each wanted taxon as
+  #' @returns a dataframe with the predicting and updated LHTs. The latter are prefixed with a keyword.
+  #' @export
+  # // @formatter:on
   pick_and_transform = function() {
     u_lht_gen <- UpdatedLHTGenerator$new(
       self$master_db,
