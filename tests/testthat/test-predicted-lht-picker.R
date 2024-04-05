@@ -1,4 +1,4 @@
-test_that("multiplication works", {
+test_that("Pick predicted LHT values at once", {
   t_collector <- PredictedLHTPicker$new(testing_db,
                                         fishlife_context$lht_names,
                                         fishlife_context$backtransform_function_list,
