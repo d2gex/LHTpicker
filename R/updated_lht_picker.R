@@ -42,7 +42,7 @@ UpdatedLHTPicker <- R6::R6Class("UpdatedLHTPicker", public = list(
   #' @export
   # // @formatter:on
   pick_and_backtransform = function() {
-    u_lht_gen <- UpdatedLHTGenerator$new(
+    u_lht_gen <- TaxaUpdatedLHTGetter$new(
       self$master_db,
       self$predicting_lht_df,
       self$transform_function_list,

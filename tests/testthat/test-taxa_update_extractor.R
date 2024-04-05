@@ -1,5 +1,5 @@
 test_that("Multiple taxon's LHTS have been extracted and backtransformed", {
-  p_lht_gen <- UpdatedLHTGenerator$new(
+  p_lht_gen <- TaxaUpdatedLHTGetter$new(
     testing_db,
     wanted_update_taxon_details,
     fishlife_context$transform_function_list,

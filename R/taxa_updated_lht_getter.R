@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Allows the streamline-generation of updated LHTs given new data.
-UpdatedLHTGenerator <- R6::R6Class("UpdatedLHTGenerator", public = list(
+TaxaUpdatedLHTGetter <- R6::R6Class("TaxaUpdatedLHTGetter", public = list(
 
   master_db = NULL,
   predicting_lht_df = NULL,
