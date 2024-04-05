@@ -5,7 +5,7 @@ test_that("Testing sample data is loaded properly", {
 
 
 test_that("Predict LHT for a specific taxa", {
-  t_extractor <- TaxonLHTCollector$new(testing_db, "Trisopterus luscus")
+  t_extractor <- TaxonPredictedLHTGetter$new(testing_db, "Trisopterus luscus")
   t.luscus_details <- t_extractor$extract()
   estimated_lhts <- t.luscus_details$estimated_lhts
   estimated_covariance <- t.luscus_details$estimated_covariance

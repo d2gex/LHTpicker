@@ -1,12 +1,12 @@
 #' Multiple Updated LHT Generator class
 #'
 #' @description
-#' Class that allows the streamline-generation of predicted LHTs given new data.
+#' Allows the streamline-generation of updated LHTs given new data.
 UpdatedLHTGenerator <- R6::R6Class("UpdatedLHTGenerator", public = list(
 
   master_db = NULL,
   predicting_lht_df = NULL,
-  func_domains = NULL,
+  transform_function_list = NULL,
   lht_names = NULL,
   # // @formatter:off
   #' @description
@@ -14,14 +14,14 @@ UpdatedLHTGenerator <- R6::R6Class("UpdatedLHTGenerator", public = list(
   #'
   #' @param master_db Fishlife database
   #' @param predicting_lht_df dataframe providing the taxon details and their predicting LHT values
-  #' @param func_domains list of transforming function which names must conform to FishLife's expectations
+  #' @param transform_function_list list of transforming function which names must conform to FishLife's expectations
   #' @param lht_names list of user-defined LHT names associated with their FishLife's counterparts
   #' @export
   # // @formatter:on
-  initialize = function(master_db, predicting_lht_df, func_domains, lht_names) {
+  initialize = function(master_db, predicting_lht_df, transform_function_list, lht_names) {
     self$master_db <- master_db
     self$predicting_lht_df <- predicting_lht_df
-    self$func_domains <- func_domains
+    self$transform_function_list <- transform_function_list
     self$lht_names <- lht_names
   },
   # // @formatter:off
@@ -97,7 +97,7 @@ UpdatedLHTGenerator <- R6::R6Class("UpdatedLHTGenerator", public = list(
     updated_lhts <- list()
     for (ind_species in names(all_species_local_lhts)) {
       species_local_lhts <- all_species_local_lhts[[ind_species]]
-      taxon_extractor <- TaxonLHTCollector$new(self$master_db, ind_species)
+      taxon_extractor <- TaxonPredictedLHTGetter$new(self$master_db, ind_species)
       taxon_details <- taxon_extractor$extract()
       if (is.null(taxon_details)) {
         stop(paste("Unable to find life history traits for taxa", ind_species))
@@ -106,7 +106,7 @@ UpdatedLHTGenerator <- R6::R6Class("UpdatedLHTGenerator", public = list(
                                                taxon_details$estimated_lhts,
                                                taxon_details$estimated_covariance,
                                                species_local_lhts,
-                                               self$func_domains)
+                                               self$transform_function_list)
       updated_lhts[[ind_species]] <- taxon_predictor$predict()
     }
     return(updated_lhts)

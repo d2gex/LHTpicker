@@ -13,7 +13,7 @@ renamed list of lht which names conform to Fishlife's expected patterns
 list of LHT values (another list) for each taxon
 }
 \description{
-Class that allows the streamline-generation of predicted LHTs given new data.
+Allows the streamline-generation of updated LHTs given new data.
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -29,7 +29,12 @@ Class that allows the streamline-generation of predicted LHTs given new data.
 \subsection{Method \code{new()}}{
 Initialise the Updated LHT Generator class
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{UpdatedLHTGenerator$new(master_db, predicting_lht_df, func_domains, lht_names)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{UpdatedLHTGenerator$new(
+  master_db,
+  predicting_lht_df,
+  transform_function_list,
+  lht_names
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -39,7 +44,7 @@ Initialise the Updated LHT Generator class
 
 \item{\code{predicting_lht_df}}{dataframe providing the taxon details and their predicting LHT values}
 
-\item{\code{func_domains}}{list of transforming function which names must conform to FishLife's expectations}
+\item{\code{transform_function_list}}{list of transforming function which names must conform to FishLife's expectations}
 
 \item{\code{lht_names}}{list of user-defined LHT names associated with their FishLife's counterparts}
 }

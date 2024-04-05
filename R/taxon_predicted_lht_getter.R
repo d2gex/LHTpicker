@@ -1,8 +1,8 @@
 #' Single Taxon LHT GRABBER class
 #'
 #' @description
-#' Class that abstracts away the underlying FishLife dynamics and grab the details of a given taxon
-TaxonLHTCollector <- R6::R6Class("TaxonLHTCollector", public = list(
+#' Abstracts away the underlying FishLife dynamics and grab the predicted LHT details of a given taxon
+TaxonPredictedLHTGetter <- R6::R6Class("TaxonPredictedLHTGetter", public = list(
 
   master_db = NULL,
   taxon = NULL,
