@@ -102,11 +102,11 @@ UpdatedLHTGenerator <- R6::R6Class("UpdatedLHTGenerator", public = list(
       if (is.null(taxon_details)) {
         stop(paste("Unable to find life history traits for taxa", ind_species))
       }
-      taxon_predictor <- TaxonLHTPredictor$new(self$master_db,
-                                               taxon_details$estimated_lhts,
-                                               taxon_details$estimated_covariance,
-                                               species_local_lhts,
-                                               self$transform_function_list)
+      taxon_predictor <- TaxonUpdatedLHTGetter$new(self$master_db,
+                                                   taxon_details$estimated_lhts,
+                                                   taxon_details$estimated_covariance,
+                                                   species_local_lhts,
+                                                   self$transform_function_list)
       updated_lhts[[ind_species]] <- taxon_predictor$predict()
     }
     return(updated_lhts)

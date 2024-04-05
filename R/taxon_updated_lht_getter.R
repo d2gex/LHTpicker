@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Class that given some LHTs will fetch their predicted version according to FishLife covariance
-TaxonLHTPredictor <- R6::R6Class("TaxonLHTPredictor", inherit = MixinUtilities, public = list(
+TaxonUpdatedLHTGetter <- R6::R6Class("TaxonUpdatedLHTGetter", inherit = MixinUtilities, public = list(
 
   master_db = NULL,
   estimated_lhts = NULL,

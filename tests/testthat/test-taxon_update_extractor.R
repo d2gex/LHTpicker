@@ -15,7 +15,7 @@ test_that("Extraction and backtransformation of predicted LHT values", {
   names(input_lhts) <- unlist(unname(lht_names))
 
   # (2)... Predict ...
-  t_predictor <- TaxonLHTPredictor$new(
+  t_predictor <- TaxonUpdatedLHTGetter$new(
     testing_db,
     estimated_lhts,
     estimated_covariance,
