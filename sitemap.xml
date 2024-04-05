@@ -31,13 +31,13 @@
     <loc>https://d2gex.github.io/LHTpicker/reference/TaxaUpdateExtractor.html</loc>
   </url>
   <url>
-    <loc>https://d2gex.github.io/LHTpicker/reference/TaxonLHTPredictor.html</loc>
-  </url>
-  <url>
     <loc>https://d2gex.github.io/LHTpicker/reference/TaxonPredictedLHTGetter.html</loc>
   </url>
   <url>
     <loc>https://d2gex.github.io/LHTpicker/reference/TaxonUpdateExtractor.html</loc>
+  </url>
+  <url>
+    <loc>https://d2gex.github.io/LHTpicker/reference/TaxonUpdatedLHTGetter.html</loc>
   </url>
   <url>
     <loc>https://d2gex.github.io/LHTpicker/reference/UpdatedLHTGenerator.html</loc>
