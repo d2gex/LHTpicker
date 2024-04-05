@@ -28,10 +28,16 @@
     <loc>https://d2gex.github.io/LHTpicker/reference/PredictedLHTPicker.html</loc>
   </url>
   <url>
+    <loc>https://d2gex.github.io/LHTpicker/reference/TaxaUpdatedLHTBuilder.html</loc>
+  </url>
+  <url>
     <loc>https://d2gex.github.io/LHTpicker/reference/TaxaUpdatedLHTGetter.html</loc>
   </url>
   <url>
     <loc>https://d2gex.github.io/LHTpicker/reference/TaxonPredictedLHTGetter.html</loc>
+  </url>
+  <url>
+    <loc>https://d2gex.github.io/LHTpicker/reference/TaxonUpdatedLHTBuilder.html</loc>
   </url>
   <url>
     <loc>https://d2gex.github.io/LHTpicker/reference/TaxonUpdatedLHTGetter.html</loc>
