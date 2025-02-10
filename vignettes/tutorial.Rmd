@@ -14,54 +14,98 @@ knitr::opts_chunk$set(
 )
 ```
 
+# 1. Installing `LHTpicker` package
+For this vigenette to work `LHTpicker` must be installed and exist in R's default libpath.
 ```{r setup}
-# installed_packages <- rownames(installed.packages())
-# if (!'LHTPicker' %in% installed_packages) {
-#   devtools::install_github("https://github.com/d2gex/LHTPicker", dep=TRUE)
-# }
-# Ensure knitr does run the vignette from the same folder as interactively
-knitr::opts_knit$set(root.dir = dirname(getwd()))
-library(LHTpicker)
+
+# devtools::install_github("https://github.com/d2gex/LHTPicker", dep=TRUE)
+
 ```
 
-# 1. Fetch wanted LHTs from FishLife
+# 2. Fetch wanted LHTs from FishLife
+There are two use cases for using FishLife to obtain missing Life History Traits (LHTs):
+i) You want to evaluate a species for which no biological parameters are available, meaning you need to retrieve FishLife-predicted LHTs for the desired taxon.
+ii) You have some biological parameters but not all, and you use FishLife to generate a new set of parameters that integrates and updates your existing data.
 
-## 1.1 Inputted taxa details
+This section deals with *case i*.
 
-A csv file with the taxon names you are after and the **wanted** LHTs is required as shown below
-```{r}
-taxon_lhts_to_fetch <- readRDS("vignettes/data/wanted_taxon_details.rds")
+## 2.1 Inputted taxa details
+
+A csv file with the taxon names and the **wanted** LHTs you are seeking is required.The csv shows as columns those LHTs
+you are after, as shown below.
+```{r provide_fishlife_with_wanted_lhts}
+taxon_lhts_to_fetch <- readRDS("data/wanted_taxon_details.rds")
 head(taxon_lhts_to_fetch)
 ```
+The wrapper uses a list to map column names in your csv to the actual names used by FishLife. Should some predicted
+variable names change in FishLife in the future, you may need to tweak the list. See that such a list is a member of an
+`R6` object and it is called `fishlife_context`. If nothing has changed in FishLife, unless you need to add more wanted parameters,
+nothing else is required to do.
+```{r lht_mapping_list}
+LHTpicker::fishlife_context$lht_names
+```
+Likewise, to back-transform the obtained predicted variables `LHTpicker` provides a function that map such predicted variables
+with the required function to convert it. As previously mentioned, you may not need to touch this list either.
 
-## 1.2 Fetching predicted LHTs
-```{r}
-p_lht_picker <- PredictedLHTPicker$new(FishLife::FishBase_and_Morphometrics,
-                                       fishlife_context$lht_names,
-                                       fishlife_context$backtransform_function_list,
-                                       taxon_lhts_to_fetch)
+```{r back_transformed_function_list}
+LHTpicker::fishlife_context$backtransform_function_list
+```
+
+## 2.2 Fetching predicted LHTs
+Please refer to the [reference](https://d2gex.github.io/LHTpicker/reference/PredictedLHTPicker.html) for further details.
+
+```{r fetch_predicted_lhts}
+p_lht_picker <- LHTpicker::PredictedLHTPicker$new(FishLife::FishBase_and_Morphometrics,
+                                                  LHTpicker::fishlife_context$lht_names,
+                                                  LHTpicker::fishlife_context$backtransform_function_list,
+                                                  taxon_lhts_to_fetch)
 predicted_lht_df <- p_lht_picker$pick_and_backtransform()
 head(predicted_lht_df)
 ```
-# 2 Fetch updated LHTs given new data
+In case FishLife cannot provide details about a species for whatever reason, `LHTpicker` will return a column of NA
+values for the rows holding details about the missing species, as shown below.
+```{r fetch_predicted_lhts_non_existing_speices}
+non_existant_taxon_lhts_to_fetch <- dplyr::mutate(taxon_lhts_to_fetch, taxon = dplyr::case_when(
+    taxon == "Trisopterus luscus" ~ "IDoNoExist",
+    .default = taxon
+))
+p_lht_picker <- LHTpicker::PredictedLHTPicker$new(FishLife::FishBase_and_Morphometrics,
+                                                  LHTpicker::fishlife_context$lht_names,
+                                                  LHTpicker::fishlife_context$backtransform_function_list,
+                                                  non_existant_taxon_lhts_to_fetch)
+predicted_lht_df <- p_lht_picker$pick_and_backtransform()
+head(predicted_lht_df)
+```
 
-## 2.1 Inputted predicting taxa details
-A csv file with the taxon names you are after and the **wanted-to-update** LHTs is required as shown below
+# 3 Fetch updated LHTs given new data
+
+This section deals with *case ii*, that is, with fetching updated LHTs from FishLife.
+
+## 3.1 Inputted predicting taxa details
+A csv file with the taxon names you are after and the **wanted-to-update** LHTs is required as shown below. Let's suppose
+we have most of the LHTs however we do not know the natural mortality(M) nor the age of maturity.
 ```{r}
-taxon_lhts_to_update <- readRDS("vignettes/data/wanted_update_taxon_details.rds")
+taxon_lhts_to_update <- readRDS("data/wanted_update_taxon_details.rds")
 head(taxon_lhts_to_update)
 ```
-## 2.2 Fetching updated LHTs
+## 3.2 Fetching updated LHTs
+Unless the previous function, we need to provide two extra parameters: a prefix that `LHTpicker` will use to concatenate
+to the named of updated columns in the csv and function transformation list, similar to the back-transformation one, to transform
+the provided LHTs into Fishlife's expected domain. Once again, unless you need other variables from FishLife, you do not
+need to modify neither of the related transformation and back-transformation lists.
 ```{r}
 
-u_lht_picker <- UpdatedLHTPicker$new(
+u_lht_picker <- LHTpicker::UpdatedLHTPicker$new(
   FishLife::FishBase_and_Morphometrics,
   taxon_lhts_to_update,
-  fishlife_context$updated_prefix,
-  fishlife_context$transform_function_list,
-  fishlife_context$backtransform_function_list,
-  fishlife_context$lht_names
+  LHTpicker::fishlife_context$updated_prefix,
+  LHTpicker::fishlife_context$transform_function_list,
+  LHTpicker::fishlife_context$backtransform_function_list,
+  LHTpicker::fishlife_context$lht_names
 )
 updated_lht_df <- u_lht_picker$pick_and_backtransform()
 head(updated_lht_df)
 ```
+See how each updated column name from FishLife has a prefix attached to it and how `updated_M` and `Amat` have now
+been provided. In order to use the these LHTs for your assessment you need to use the whole returned set, to avoid breaking
+the covariance matrix among parameters (Thorson et al., 2017)
