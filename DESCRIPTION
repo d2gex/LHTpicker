@@ -19,7 +19,7 @@ Imports:
     magrittr,
     FishLife
 Remotes:
-    James-Thorson-NOAA/FishLife@3.1.0
+    James-Thorson-NOAA/FishLife
 Suggests:
     knitr,
     rmarkdown,
