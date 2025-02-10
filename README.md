@@ -15,7 +15,7 @@ in the original version of the software (Thorson et al., 2017), while utilising 
 (Thorson et al., 2023). Consequently, it is likely compatible with additional parameters introduced in subsequent updates. 
 Since 2017, new predicted parameters of various types have been incrementally added (Thorson et al., 2017, 2023; Thorson, 2020)."
 
-"The wrapper is designed to handle potential name changes in predicted variables resulting from FishLife updates. 
+The wrapper is designed to handle potential name changes in predicted variables resulting from FishLife updates. 
 To ensure compatibility, simply provide `LHTpicker` with a mapping of the updated field names." Please have a look at 
 this [tutorial](https://d2gex.github.io/LHTpicker/articles/tutorial.html) to understand how the whole thing works.
 
