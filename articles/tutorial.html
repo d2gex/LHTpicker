@@ -5,54 +5,46 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="LHTpicker">
 <title>Tutorial: Use Cases • LHTpicker</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial: Use Cases">
-<meta property="og:description" content="LHTpicker">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial: Use Cases">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">LHTpicker</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/tutorial.html">Tutorial: Use Cases</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/tutorial.html">Tutorial: Use Cases</a></li>
+  </ul>
 </li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav"></ul>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+      </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -61,46 +53,123 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Tutorial: Use Cases</h1>
+
+      <h1>Tutorial: Use Cases</h1>
             
       
-      
+
       <div class="d-none name"><code>tutorial.Rmd</code></div>
     </div>
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># installed_packages &lt;- rownames(installed.packages())</span></span>
-<span><span class="co"># if (!'LHTPicker' %in% installed_packages) {</span></span>
-<span><span class="co">#   devtools::install_github("https://github.com/d2gex/LHTPicker", dep=TRUE)</span></span>
-<span><span class="co"># }</span></span>
-<span><span class="co"># Ensure knitr does run the vignette from the same folder as interactively</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_knit.html" class="external-link">opts_knit</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>root.dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">dirname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://d2gex.github.io/LHTpicker/">LHTpicker</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
-<h2 id="fetch-wanted-lhts-from-fishlife">1. Fetch wanted LHTs from FishLife<a class="anchor" aria-label="anchor" href="#fetch-wanted-lhts-from-fishlife"></a>
+<h2 id="installing-lhtpicker-package">1. Installing <code>LHTpicker</code> package<a class="anchor" aria-label="anchor" href="#installing-lhtpicker-package"></a>
 </h2>
+<p>For this vigenette to work <code>LHTpicker</code> must be installed
+and exist in R’s default libpath.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="co"># devtools::install_github("https://github.com/d2gex/LHTPicker", dep=TRUE)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="fetch-wanted-lhts-from-fishlife">2. Fetch wanted LHTs from FishLife<a class="anchor" aria-label="anchor" href="#fetch-wanted-lhts-from-fishlife"></a>
+</h2>
+<p>There are two use cases for using FishLife to obtain missing Life
+History Traits (LHTs): i) You want to evaluate a species for which no
+biological parameters are available, meaning you need to retrieve
+FishLife-predicted LHTs for the desired taxon. ii) You have some
+biological parameters but not all, and you use FishLife to generate a
+new set of parameters that integrates and updates your existing
+data.</p>
+<p>This section deals with <em>case i</em>.</p>
 <div class="section level3">
-<h3 id="inputted-taxa-details">1.1 Inputted taxa details<a class="anchor" aria-label="anchor" href="#inputted-taxa-details"></a>
+<h3 id="inputted-taxa-details">2.1 Inputted taxa details<a class="anchor" aria-label="anchor" href="#inputted-taxa-details"></a>
 </h3>
-<p>A csv file with the taxon names you are after and the
-<strong>wanted</strong> LHTs is required as shown below</p>
+<p>A csv file with the taxon names and the <strong>wanted</strong> LHTs
+you are seeking is required.The csv shows as columns those LHTs you are
+after, as shown below.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">taxon_lhts_to_fetch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"vignettes/data/wanted_taxon_details.rds"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">taxon_lhts_to_fetch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"data/wanted_taxon_details.rds"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">taxon_lhts_to_fetch</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                   taxon Linf Winf  K L50  M Amat Amax Temperature</span></span>
 <span><span class="co">#&gt; 1    Trisopterus luscus   NA   NA NA  NA NA   NA   NA          NA</span></span>
 <span><span class="co">#&gt; 2 Pollachius pollachius   NA   NA NA  NA NA   NA   NA          NA</span></span></code></pre></div>
+<p>The wrapper uses a list to map column names in your csv to the actual
+names used by FishLife. Should some predicted variable names change in
+FishLife in the future, you may need to tweak the list. See that such a
+list is a member of an <code>R6</code> object and it is called
+<code>fishlife_context</code>. If nothing has changed in FishLife,
+unless you need to add more wanted parameters, nothing else is required
+to do.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">LHTpicker</span><span class="fu">::</span><span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span></span>
+<span><span class="co">#&gt; $Linf</span></span>
+<span><span class="co">#&gt; [1] "log(length_infinity)"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $Winf</span></span>
+<span><span class="co">#&gt; [1] "log(weight_infinity)"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $K</span></span>
+<span><span class="co">#&gt; [1] "log(growth_coefficient)"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $M</span></span>
+<span><span class="co">#&gt; [1] "log(natural_mortality)"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $L50</span></span>
+<span><span class="co">#&gt; [1] "log(length_maturity)"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $Amax</span></span>
+<span><span class="co">#&gt; [1] "log(age_max)"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $Amat</span></span>
+<span><span class="co">#&gt; [1] "log(age_maturity)"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $Temperature</span></span>
+<span><span class="co">#&gt; [1] "temperature"</span></span></code></pre></div>
+<p>Likewise, to back-transform the obtained predicted variables
+<code>LHTpicker</code> provides a function that map such predicted
+variables with the required function to convert it. As previously
+mentioned, you may not need to touch this list either.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">LHTpicker</span><span class="fu">::</span><span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function_list</span></span>
+<span><span class="co">#&gt; $`log(length_infinity)`</span></span>
+<span><span class="co">#&gt; function (x)  .Primitive("exp")</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $`log(weight_infinity)`</span></span>
+<span><span class="co">#&gt; function (x)  .Primitive("exp")</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $`log(growth_coefficient)`</span></span>
+<span><span class="co">#&gt; function (x)  .Primitive("exp")</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $`log(natural_mortality)`</span></span>
+<span><span class="co">#&gt; function (x)  .Primitive("exp")</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $`log(length_maturity)`</span></span>
+<span><span class="co">#&gt; function (x)  .Primitive("exp")</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $`log(age_max)`</span></span>
+<span><span class="co">#&gt; function (x)  .Primitive("exp")</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $`log(age_maturity)`</span></span>
+<span><span class="co">#&gt; function (x)  .Primitive("exp")</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $temperature</span></span>
+<span><span class="co">#&gt; function (x) </span></span>
+<span><span class="co">#&gt; x</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55b798dcab60&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="fetching-predicted-lhts">1.2 Fetching predicted LHTs<a class="anchor" aria-label="anchor" href="#fetching-predicted-lhts"></a>
+<h3 id="fetching-predicted-lhts">2.2 Fetching predicted LHTs<a class="anchor" aria-label="anchor" href="#fetching-predicted-lhts"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p_lht_picker</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/PredictedLHTPicker.html">PredictedLHTPicker</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="fu">FishLife</span><span class="fu">::</span><span class="va"><a href="https://james-thorson-noaa.github.io/FishLife/reference/FishBase_and_Morphometrics.html" class="external-link">FishBase_and_Morphometrics</a></span>,</span>
-<span>                                       <span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span>,</span>
-<span>                                       <span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function_list</span>,</span>
-<span>                                       <span class="va">taxon_lhts_to_fetch</span><span class="op">)</span></span>
+<p>Please refer to the <a href="https://d2gex.github.io/LHTpicker/reference/PredictedLHTPicker.html">reference</a>
+for further details.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p_lht_picker</span> <span class="op">&lt;-</span> <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va"><a href="../reference/PredictedLHTPicker.html">PredictedLHTPicker</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="fu">FishLife</span><span class="fu">::</span><span class="va"><a href="https://james-thorson-noaa.github.io/FishLife/reference/FishBase_and_Morphometrics.html" class="external-link">FishBase_and_Morphometrics</a></span>,</span>
+<span>                                                  <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span>,</span>
+<span>                                                  <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function_list</span>,</span>
+<span>                                                  <span class="va">taxon_lhts_to_fetch</span><span class="op">)</span></span>
 <span><span class="va">predicted_lht_df</span> <span class="op">&lt;-</span> <span class="va">p_lht_picker</span><span class="op">$</span><span class="fu">pick_and_backtransform</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">predicted_lht_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                   taxon     Linf      Winf         K      L50         M</span></span>
@@ -109,71 +178,106 @@
 <span><span class="co">#&gt;       Amat      Amax Temperature</span></span>
 <span><span class="co">#&gt; 1 1.400562  6.458926    17.36961</span></span>
 <span><span class="co">#&gt; 2 3.456610 12.138258    12.11773</span></span></code></pre></div>
+<p>In case FishLife cannot provide details about a species for whatever
+reason, <code>LHTpicker</code> will return a column of NA values for the
+rows holding details about the missing species, as shown below.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">non_existant_taxon_lhts_to_fetch</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">taxon_lhts_to_fetch</span>, taxon <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span></span>
+<span>    <span class="va">taxon</span> <span class="op">==</span> <span class="st">"Trisopterus luscus"</span> <span class="op">~</span> <span class="st">"IDoNoExist"</span>,</span>
+<span>    .default <span class="op">=</span> <span class="va">taxon</span></span>
+<span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">p_lht_picker</span> <span class="op">&lt;-</span> <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va"><a href="../reference/PredictedLHTPicker.html">PredictedLHTPicker</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="fu">FishLife</span><span class="fu">::</span><span class="va"><a href="https://james-thorson-noaa.github.io/FishLife/reference/FishBase_and_Morphometrics.html" class="external-link">FishBase_and_Morphometrics</a></span>,</span>
+<span>                                                  <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span>,</span>
+<span>                                                  <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function_list</span>,</span>
+<span>                                                  <span class="va">non_existant_taxon_lhts_to_fetch</span><span class="op">)</span></span>
+<span><span class="va">predicted_lht_df</span> <span class="op">&lt;-</span> <span class="va">p_lht_picker</span><span class="op">$</span><span class="fu">pick_and_backtransform</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">predicted_lht_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 9</span></span></span>
+<span><span class="co">#&gt;   taxon                  Linf  Winf      K   L50      M  Amat  Amax Temperature</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> IDoNoExist             <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>  <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>   <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Pollachius pollachius  87.3 <span style="text-decoration: underline;">5</span>820.  0.187  34.7  0.309  3.46  12.1        12.1</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
-<h2 id="fetch-updated-lhts-given-new-data">2 Fetch updated LHTs given new data<a class="anchor" aria-label="anchor" href="#fetch-updated-lhts-given-new-data"></a>
+<h2 id="fetch-updated-lhts-given-new-data">3 Fetch updated LHTs given new data<a class="anchor" aria-label="anchor" href="#fetch-updated-lhts-given-new-data"></a>
 </h2>
+<p>This section deals with <em>case ii</em>, that is, with fetching
+updated LHTs from FishLife.</p>
 <div class="section level3">
-<h3 id="inputted-predicting-taxa-details">2.1 Inputted predicting taxa details<a class="anchor" aria-label="anchor" href="#inputted-predicting-taxa-details"></a>
+<h3 id="inputted-predicting-taxa-details">3.1 Inputted predicting taxa details<a class="anchor" aria-label="anchor" href="#inputted-predicting-taxa-details"></a>
 </h3>
 <p>A csv file with the taxon names you are after and the
-<strong>wanted-to-update</strong> LHTs is required as shown below</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">taxon_lhts_to_update</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"vignettes/data/wanted_update_taxon_details.rds"</span><span class="op">)</span></span>
+<strong>wanted-to-update</strong> LHTs is required as shown below. Let’s
+suppose we have most of the LHTs however we do not know the natural
+mortality(M) nor the age of maturity.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">taxon_lhts_to_update</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"data/wanted_update_taxon_details.rds"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">taxon_lhts_to_update</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                   taxon   Linf  Winf     K   L50     M Amat Amax Temperature</span></span>
-<span><span class="co">#&gt; 1    Trisopterus luscus  42.41   921 0.210 19.45 0.254   NA    9        14.3</span></span>
-<span><span class="co">#&gt; 2 Pollachius pollachius 102.14 12045 0.193 41.60 0.284   NA    8        14.3</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 9</span></span></span>
+<span><span class="co">#&gt;   taxon                  Linf  Winf     K   L50 M     Amat   Amax Temperature</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Trisopterus luscus     42.4   921 0.21   19.4 <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>        9        14.3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Pollachius pollachius 102.  <span style="text-decoration: underline;">12</span>045 0.193  41.6 <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>        8        14.3</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="fetching-updated-lhts">2.2 Fetching updated LHTs<a class="anchor" aria-label="anchor" href="#fetching-updated-lhts"></a>
+<h3 id="fetching-updated-lhts">3.2 Fetching updated LHTs<a class="anchor" aria-label="anchor" href="#fetching-updated-lhts"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<p>Unless the previous function, we need to provide two extra
+parameters: a prefix that <code>LHTpicker</code> will use to concatenate
+to the named of updated columns in the csv and function transformation
+list, similar to the back-transformation one, to transform the provided
+LHTs into Fishlife’s expected domain. Once again, unless you need other
+variables from FishLife, you do not need to modify neither of the
+related transformation and back-transformation lists.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="va">u_lht_picker</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/UpdatedLHTPicker.html">UpdatedLHTPicker</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
+<span><span class="va">u_lht_picker</span> <span class="op">&lt;-</span> <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va"><a href="../reference/UpdatedLHTPicker.html">UpdatedLHTPicker</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
 <span>  <span class="fu">FishLife</span><span class="fu">::</span><span class="va"><a href="https://james-thorson-noaa.github.io/FishLife/reference/FishBase_and_Morphometrics.html" class="external-link">FishBase_and_Morphometrics</a></span>,</span>
 <span>  <span class="va">taxon_lhts_to_update</span>,</span>
-<span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">updated_prefix</span>,</span>
-<span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">transform_function_list</span>,</span>
-<span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function_list</span>,</span>
-<span>  <span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span></span>
+<span>  <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va">fishlife_context</span><span class="op">$</span><span class="va">updated_prefix</span>,</span>
+<span>  <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va">fishlife_context</span><span class="op">$</span><span class="va">transform_function_list</span>,</span>
+<span>  <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function_list</span>,</span>
+<span>  <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">updated_lht_df</span> <span class="op">&lt;-</span> <span class="va">u_lht_picker</span><span class="op">$</span><span class="fu">pick_and_backtransform</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">updated_lht_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                   taxon   Linf  Winf     K   L50     M Amat Amax Temperature</span></span>
-<span><span class="co">#&gt; 1    Trisopterus luscus  42.41   921 0.210 19.45 0.254   NA    9        14.3</span></span>
-<span><span class="co">#&gt; 2 Pollachius pollachius 102.14 12045 0.193 41.60 0.284   NA    8        14.3</span></span>
+<span><span class="co">#&gt;                   taxon   Linf  Winf     K   L50  M Amat Amax Temperature</span></span>
+<span><span class="co">#&gt; 1    Trisopterus luscus  42.41   921 0.210 19.45 NA   NA    9        14.3</span></span>
+<span><span class="co">#&gt; 2 Pollachius pollachius 102.14 12045 0.193 41.60 NA   NA    8        14.3</span></span>
 <span><span class="co">#&gt;   updated_Linf updated_Winf updated_K updated_M updated_L50 updated_Amax</span></span>
-<span><span class="co">#&gt; 1     44.24669     846.1382 0.3422767 0.5655704    19.91196     7.024725</span></span>
-<span><span class="co">#&gt; 2     95.11434    8399.8020 0.1878959 0.2989860    36.52335    11.118416</span></span>
+<span><span class="co">#&gt; 1     44.01880     839.5509 0.3451741 0.5872462    19.60257     6.973144</span></span>
+<span><span class="co">#&gt; 2     95.04985    8387.9049 0.1881105 0.2997824    36.48049    11.111069</span></span>
 <span><span class="co">#&gt;   updated_Amat updated_Temperature</span></span>
-<span><span class="co">#&gt; 1     1.445218            16.72769</span></span>
-<span><span class="co">#&gt; 2     3.418150            13.05402</span></span></code></pre></div>
+<span><span class="co">#&gt; 1     1.438878            16.75299</span></span>
+<span><span class="co">#&gt; 2     3.413651            13.05912</span></span></code></pre></div>
+<p>See how each updated column name from FishLife has a prefix attached
+to it and how <code>updated_M</code> and <code>Amat</code> have now been
+provided. In order to use the these LHTs for your assessment you need to
+use the whole returned set, to avoid breaking the covariance matrix
+among parameters (Thorson et al., 2017)</p>
 </div>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Dan G.</p>
+  <p>Developed by Dan G.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>

@@ -1,54 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/404.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/articles/tutorial.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/index.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/reference/FishlifeLHTNameSpace.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/reference/MixinUtilities.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/reference/PredictedLHTPicker.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/reference/TaxaUpdatedLHTBuilder.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/reference/TaxaUpdatedLHTGetter.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/reference/TaxonPredictedLHTGetter.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/reference/TaxonUpdatedLHTBuilder.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/reference/TaxonUpdatedLHTGetter.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/reference/UpdatedLHTPicker.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://d2gex.github.io/LHTpicker/reference/pipe.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://d2gex.github.io/LHTpicker/404.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/LICENSE-text.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/articles/index.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/articles/tutorial.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/authors.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/index.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/reference/FishlifeLHTNameSpace.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/reference/MixinUtilities.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/reference/PredictedLHTPicker.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/reference/TaxaUpdatedLHTBuilder.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/reference/TaxaUpdatedLHTGetter.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/reference/TaxonPredictedLHTGetter.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/reference/TaxonUpdatedLHTBuilder.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/reference/TaxonUpdatedLHTGetter.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/reference/UpdatedLHTPicker.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/reference/index.html</loc></url>
+<url><loc>https://d2gex.github.io/LHTpicker/reference/pipe.html</loc></url>
 </urlset>
+
