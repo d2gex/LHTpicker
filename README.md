@@ -1,31 +1,27 @@
 [![Documentation](https://img.shields.io/badge/documentation-LHTpicker-orange.svg?colorB=E91E63)](https://github.com/d2gex/LHTpicker)
 
 # LHTpicker
-This is a thin wrapper over [FishLife](https://github.com/James-Thorson-NOAA/FishLife) library that helps to abstract 
-the underlying data structure from the final user, easing the fetching and update of Life History Traits (LHTs). 
-The following processes have been integrated:
+LHTpicker is a thin wrapper around [FishLife](https://github.com/James-Thorson-NOAA/FishLife) for retrieving and updating life-history traits (LHTs) for one or more taxa. It hides FishLife's internal data structures while retaining its prediction workflow.
 
-1. Fetch predicted LHTs from FishLife for an individual taxon.
-2. Provide FishLife with '*predicting*' LHTs and fetch the **updated** predicted values back from FishLife 
-for an individual taxon.
-3. Streamline both processes aforementioned for multiple taxa.
+It supports three tasks:
 
-A CSV input is used in all cases. **Note** that this wrapper has been tested only with LHTs included 
-in the original version of the software (Thorson et al., 2017), while utilising the latest FishLife interface 
-(Thorson et al., 2023). Consequently, it is likely compatible with additional parameters introduced in subsequent updates. 
-Since 2017, new predicted parameters of various types have been incrementally added (Thorson et al., 2017, 2023; Thorson, 2020)."
+1. Retrieve FishLife-predicted LHTs for selected taxa.
+2. Update FishLife predictions using supplied LHT values.
+3. Apply either workflow to multiple taxa in one input table.
 
-The wrapper is designed to handle potential name changes in predicted variables resulting from FishLife updates. 
-To ensure compatibility, simply provide `LHTpicker` with a mapping of the updated field names." Please have a look at 
-this [tutorial](https://d2gex.github.io/LHTpicker/articles/tutorial.html) to understand how the whole thing works.
+Input is a data frame, commonly read from CSV, with one taxon per row. The default mappings cover the LHTs used in the original FishLife publication (Thorson et al., 2017). If you request additional traits or FishLife changes its field names, update the mappings in `fishlife_context` and their corresponding transformation functions.
 
-# Installation
-This R package can be installed through the devtools as follows:
-```r 
-  devtools::install_github("https://github.com/d2gex/LHTpicker", dep=TRUE)
+See the [tutorial](https://d2gex.github.io/LHTpicker/articles/tutorial.html) for complete examples.
+
+## Installation
+
+Install the package with `devtools`:
+
+```r
+devtools::install_github("d2gex/LHTpicker", dependencies = TRUE)
 ```
 
-# 3 References
+## References
 
 1. Thorson, J. T., S. B. Munch, J. M. Cope, and J. Gao. 2017. Predicting life history parameters for all fishes worldwide. Ecological Applications. 27(8): 2262–2276. http://onlinelibrary.wiley.com/doi/10.1002/eap.1606/full
 2. Thorson, J.T., 2020. Predicting recruitment density dependence and intrinsic growth rate for all fishes worldwide using a data-integrated life-history model. Fish Fish. 21, 237–251. https://doi.org/10.1111/faf.12427
