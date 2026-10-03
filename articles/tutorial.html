@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Tutorial: Use Cases • LHTpicker</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial: Use Cases">
 </head>
@@ -64,44 +64,39 @@
     
     
 <div class="section level2">
-<h2 id="installing-lhtpicker-package">1. Installing <code>LHTpicker</code> package<a class="anchor" aria-label="anchor" href="#installing-lhtpicker-package"></a>
+<h2 id="install-lhtpicker">1. Install <code>LHTpicker</code><a class="anchor" aria-label="anchor" href="#install-lhtpicker"></a>
 </h2>
-<p>For this vigenette to work <code>LHTpicker</code> must be installed
-and exist in R’s default libpath.</p>
+<p>To run this vignette, install <code>LHTpicker</code> in one of R’s
+library paths.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># devtools::install_github("https://github.com/d2gex/LHTPicker", dep=TRUE)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># devtools::install_github("d2gex/LHTpicker", dependencies = TRUE)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="fetch-wanted-lhts-from-fishlife">2. Fetch wanted LHTs from FishLife<a class="anchor" aria-label="anchor" href="#fetch-wanted-lhts-from-fishlife"></a>
+<h2 id="retrieve-lhts-from-fishlife">2. Retrieve LHTs from FishLife<a class="anchor" aria-label="anchor" href="#retrieve-lhts-from-fishlife"></a>
 </h2>
-<p>There are two use cases for using FishLife to obtain missing Life
-History Traits (LHTs): i) You want to evaluate a species for which no
-biological parameters are available, meaning you need to retrieve
-FishLife-predicted LHTs for the desired taxon. ii) You have some
-biological parameters but not all, and you use FishLife to generate a
-new set of parameters that integrates and updates your existing
-data.</p>
-<p>This section deals with <em>case i</em>.</p>
+<p>LHTpicker supports two workflows:</p>
+<ol style="list-style-type: decimal">
+<li>Retrieve FishLife predictions when trait values are
+unavailable.</li>
+<li>Update FishLife predictions using a partial set of supplied trait
+values.</li>
+</ol>
+<p>This section covers the first workflow.</p>
 <div class="section level3">
-<h3 id="inputted-taxa-details">2.1 Inputted taxa details<a class="anchor" aria-label="anchor" href="#inputted-taxa-details"></a>
+<h3 id="input-taxa-and-requested-traits">2.1 Input taxa and requested traits<a class="anchor" aria-label="anchor" href="#input-taxa-and-requested-traits"></a>
 </h3>
-<p>A csv file with the taxon names and the <strong>wanted</strong> LHTs
-you are seeking is required.The csv shows as columns those LHTs you are
-after, as shown below.</p>
+<p>Provide a data frame with a <code>taxon</code> column and one column
+for each requested LHT. In practice, this can be read from CSV. The
+requested-trait columns are <code>NA</code> in this example.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">taxon_lhts_to_fetch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"data/wanted_taxon_details.rds"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">taxon_lhts_to_fetch</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                   taxon Linf Winf  K L50  M Amat Amax Temperature</span></span>
 <span><span class="co">#&gt; 1    Trisopterus luscus   NA   NA NA  NA NA   NA   NA          NA</span></span>
 <span><span class="co">#&gt; 2 Pollachius pollachius   NA   NA NA  NA NA   NA   NA          NA</span></span></code></pre></div>
-<p>The wrapper uses a list to map column names in your csv to the actual
-names used by FishLife. Should some predicted variable names change in
-FishLife in the future, you may need to tweak the list. See that such a
-list is a member of an <code>R6</code> object and it is called
-<code>fishlife_context</code>. If nothing has changed in FishLife,
-unless you need to add more wanted parameters, nothing else is required
-to do.</p>
+<p><code>fishlife_context$lht_names</code> maps LHTpicker column names
+to FishLife field names. You only need to change it when requesting a
+trait outside the default set or when FishLife changes a field name.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">LHTpicker</span><span class="fu">::</span><span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span></span>
 <span><span class="co">#&gt; $Linf</span></span>
@@ -127,10 +122,9 @@ to do.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $Temperature</span></span>
 <span><span class="co">#&gt; [1] "temperature"</span></span></code></pre></div>
-<p>Likewise, to back-transform the obtained predicted variables
-<code>LHTpicker</code> provides a function that map such predicted
-variables with the required function to convert it. As previously
-mentioned, you may not need to touch this list either.</p>
+<p><code>backtransform_function_list</code> maps each FishLife field to
+the function that converts it back to the user-facing scale. The default
+list normally requires no changes.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">LHTpicker</span><span class="fu">::</span><span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function_list</span></span>
 <span><span class="co">#&gt; $`log(length_infinity)`</span></span>
@@ -157,14 +151,14 @@ mentioned, you may not need to touch this list either.</p>
 <span><span class="co">#&gt; $temperature</span></span>
 <span><span class="co">#&gt; function (x) </span></span>
 <span><span class="co">#&gt; x</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x555c39c6b860&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55a9bdc34130&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:base&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="fetching-predicted-lhts">2.2 Fetching predicted LHTs<a class="anchor" aria-label="anchor" href="#fetching-predicted-lhts"></a>
+<h3 id="retrieve-predicted-lhts">2.2 Retrieve predicted LHTs<a class="anchor" aria-label="anchor" href="#retrieve-predicted-lhts"></a>
 </h3>
-<p>Please refer to the <a href="https://d2gex.github.io/LHTpicker/reference/PredictedLHTPicker.html">reference</a>
-for further details.</p>
+<p>See the <a href="https://d2gex.github.io/LHTpicker/reference/PredictedLHTPicker.html">reference
+documentation</a> for the full interface.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p_lht_picker</span> <span class="op">&lt;-</span> <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va"><a href="../reference/PredictedLHTPicker.html">PredictedLHTPicker</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="fu">FishLife</span><span class="fu">::</span><span class="va"><a href="https://james-thorson-noaa.github.io/FishLife/reference/FishBase_and_Morphometrics.html" class="external-link">FishBase_and_Morphometrics</a></span>,</span>
 <span>                                                  <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span>,</span>
@@ -178,18 +172,17 @@ for further details.</p>
 <span><span class="co">#&gt;       Amat      Amax Temperature</span></span>
 <span><span class="co">#&gt; 1 1.400562  6.458926    17.36961</span></span>
 <span><span class="co">#&gt; 2 3.456610 12.138258    12.11773</span></span></code></pre></div>
-<p>In case FishLife cannot provide details about a species for whatever
-reason, <code>LHTpicker</code> will return a column of NA values for the
-rows holding details about the missing species, as shown below.</p>
+<p>If FishLife cannot match a taxon, LHTpicker preserves its input row
+and leaves the requested LHT values as <code>NA</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">non_existant_taxon_lhts_to_fetch</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">taxon_lhts_to_fetch</span>, taxon <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">non_existent_taxon_lhts_to_fetch</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">taxon_lhts_to_fetch</span>, taxon <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html" class="external-link">case_when</a></span><span class="op">(</span></span>
 <span>    <span class="va">taxon</span> <span class="op">==</span> <span class="st">"Trisopterus luscus"</span> <span class="op">~</span> <span class="st">"IDoNoExist"</span>,</span>
 <span>    .default <span class="op">=</span> <span class="va">taxon</span></span>
 <span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">p_lht_picker</span> <span class="op">&lt;-</span> <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va"><a href="../reference/PredictedLHTPicker.html">PredictedLHTPicker</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="fu">FishLife</span><span class="fu">::</span><span class="va"><a href="https://james-thorson-noaa.github.io/FishLife/reference/FishBase_and_Morphometrics.html" class="external-link">FishBase_and_Morphometrics</a></span>,</span>
 <span>                                                  <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va">fishlife_context</span><span class="op">$</span><span class="va">lht_names</span>,</span>
 <span>                                                  <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va">fishlife_context</span><span class="op">$</span><span class="va">backtransform_function_list</span>,</span>
-<span>                                                  <span class="va">non_existant_taxon_lhts_to_fetch</span><span class="op">)</span></span>
+<span>                                                  <span class="va">non_existent_taxon_lhts_to_fetch</span><span class="op">)</span></span>
 <span><span class="va">predicted_lht_df</span> <span class="op">&lt;-</span> <span class="va">p_lht_picker</span><span class="op">$</span><span class="fu">pick_and_backtransform</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">predicted_lht_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 9</span></span></span>
@@ -200,17 +193,17 @@ rows holding details about the missing species, as shown below.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="fetch-updated-lhts-given-new-data">3 Fetch updated LHTs given new data<a class="anchor" aria-label="anchor" href="#fetch-updated-lhts-given-new-data"></a>
+<h2 id="update-lhts-with-supplied-data">3. Update LHTs with supplied data<a class="anchor" aria-label="anchor" href="#update-lhts-with-supplied-data"></a>
 </h2>
-<p>This section deals with <em>case ii</em>, that is, with fetching
-updated LHTs from FishLife.</p>
+<p>This section covers the second workflow: updating FishLife
+predictions with supplied data.</p>
 <div class="section level3">
-<h3 id="inputted-predicting-taxa-details">3.1 Inputted predicting taxa details<a class="anchor" aria-label="anchor" href="#inputted-predicting-taxa-details"></a>
+<h3 id="input-taxa-and-supplied-traits">3.1 Input taxa and supplied traits<a class="anchor" aria-label="anchor" href="#input-taxa-and-supplied-traits"></a>
 </h3>
-<p>A csv file with the taxon names you are after and the
-<strong>wanted-to-update</strong> LHTs is required as shown below. Let’s
-suppose we have most of the LHTs however we do not know the natural
-mortality(M) nor the age of maturity.</p>
+<p>Provide a data frame with one taxon per row and the available LHTs in
+the remaining columns. In this example, natural mortality
+(<code>M</code>) and age at maturity (<code>Amat</code>) are
+missing.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">taxon_lhts_to_update</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"data/wanted_update_taxon_details.rds"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">taxon_lhts_to_update</span><span class="op">)</span></span>
@@ -221,15 +214,14 @@ mortality(M) nor the age of maturity.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Pollachius pollachius 102.  <span style="text-decoration: underline;">12</span>045 0.193  41.6 <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>        8        14.3</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="fetching-updated-lhts">3.2 Fetching updated LHTs<a class="anchor" aria-label="anchor" href="#fetching-updated-lhts"></a>
+<h3 id="retrieve-updated-lhts">3.2 Retrieve updated LHTs<a class="anchor" aria-label="anchor" href="#retrieve-updated-lhts"></a>
 </h3>
-<p>Unless the previous function, we need to provide two extra
-parameters: a prefix that <code>LHTpicker</code> will use to concatenate
-to the named of updated columns in the csv and function transformation
-list, similar to the back-transformation one, to transform the provided
-LHTs into Fishlife’s expected domain. Once again, unless you need other
-variables from FishLife, you do not need to modify neither of the
-related transformation and back-transformation lists.</p>
+<p>Compared with the prediction workflow, this call also needs an
+<code>updated</code> prefix and a transformation list. LHTpicker
+prefixes each new LHT column with <code>updated_</code>. The
+transformation list converts supplied values to FishLife’s internal
+scale; the back-transformation list converts the returned values to the
+user-facing scale. You normally do not need to change either list.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">u_lht_picker</span> <span class="op">&lt;-</span> <span class="fu">LHTpicker</span><span class="fu">::</span><span class="va"><a href="../reference/UpdatedLHTPicker.html">UpdatedLHTPicker</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
@@ -251,11 +243,11 @@ related transformation and back-transformation lists.</p>
 <span><span class="co">#&gt;   updated_Amat updated_Temperature</span></span>
 <span><span class="co">#&gt; 1     1.438878            16.75299</span></span>
 <span><span class="co">#&gt; 2     3.413651            13.05912</span></span></code></pre></div>
-<p>See how each updated column name from FishLife has a prefix attached
-to it and how <code>updated_M</code> and <code>Amat</code> have now been
-provided. In order to use the these LHTs for your assessment you need to
-use the whole returned set, to avoid breaking the covariance matrix
-among parameters (Thorson et al., 2017)</p>
+<p>Each new LHT column has the <code>updated_</code> prefix; for
+example, <code>updated_M</code> and <code>updated_Amat</code> are now
+available. For an assessment, use the complete updated trait set rather
+than mixing input and updated values, to preserve the covariance
+structure among parameters (Thorson et al., 2017).</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -269,7 +261,7 @@ among parameters (Thorson et al., 2017)</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

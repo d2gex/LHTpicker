@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Fishlife LHT picker • LHTpicker</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Fishlife LHT picker">
 <meta name="description" content="A FishLife thin wrapper to streamline the collection and/or update of Life History Traits (LHTs) for multiple taxa">
@@ -54,25 +54,25 @@
 <div class="section level1">
 <div class="page-header"><h1 id="lhtpicker">LHTpicker<a class="anchor" aria-label="anchor" href="#lhtpicker"></a>
 </h1></div>
-<p>This is a thin wrapper over <a href="https://github.com/James-Thorson-NOAA/FishLife" class="external-link">FishLife</a> library that helps to abstract the underlying data structure from the final user, easing the fetching and update of Life History Traits (LHTs). The following processes have been integrated:</p>
+<p>LHTpicker is a thin wrapper around <a href="https://github.com/James-Thorson-NOAA/FishLife" class="external-link">FishLife</a> for retrieving and updating life-history traits (LHTs) for one or more taxa. It hides FishLife’s internal data structures while retaining its prediction workflow.</p>
+<p>It supports three tasks:</p>
 <ol style="list-style-type: decimal">
-<li>Fetch predicted LHTs from FishLife for an individual taxon.</li>
-<li>Provide FishLife with ‘<em>predicting</em>’ LHTs and fetch the <strong>updated</strong> predicted values back from FishLife for an individual taxon.</li>
-<li>Streamline both processes aforementioned for multiple taxa.</li>
+<li>Retrieve FishLife-predicted LHTs for selected taxa.</li>
+<li>Update FishLife predictions using supplied LHT values.</li>
+<li>Apply either workflow to multiple taxa in one input table.</li>
 </ol>
-<p>A CSV input is used in all cases. <strong>Note</strong> that this wrapper has been tested only with LHTs included in the original version of the software (Thorson et al., 2017), while utilising the latest FishLife interface (Thorson et al., 2023). Consequently, it is likely compatible with additional parameters introduced in subsequent updates. Since 2017, new predicted parameters of various types have been incrementally added (Thorson et al., 2017, 2023; Thorson, 2020).”</p>
-<p>The wrapper is designed to handle potential name changes in predicted variables resulting from FishLife updates. To ensure compatibility, simply provide <code>LHTpicker</code> with a mapping of the updated field names.” Please have a look at this <a href="https://d2gex.github.io/LHTpicker/articles/tutorial.html">tutorial</a> to understand how the whole thing works.</p>
-</div>
-<div class="section level1">
-<h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h1>
-<p>This R package can be installed through the devtools as follows:</p>
+<p>Input is a data frame, commonly read from CSV, with one taxon per row. The default mappings cover the LHTs used in the original FishLife publication (Thorson et al., 2017). If you request additional traits or FishLife changes its field names, update the mappings in <code>fishlife_context</code> and their corresponding transformation functions.</p>
+<p>See the <a href="https://d2gex.github.io/LHTpicker/articles/tutorial.html">tutorial</a> for complete examples.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>Install the package with <code>devtools</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span>  <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"https://github.com/d2gex/LHTpicker"</span>, dep<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"d2gex/LHTpicker"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level1">
-<h1 id="id_3-references">3 References<a class="anchor" aria-label="anchor" href="#id_3-references"></a>
-</h1>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <ol style="list-style-type: decimal">
 <li>Thorson, J. T., S. B. Munch, J. M. Cope, and J. Gao. 2017. Predicting life history parameters for all fishes worldwide. Ecological Applications. 27(8): 2262–2276. <a href="http://onlinelibrary.wiley.com/doi/10.1002/eap.1606/full" class="external-link uri">http://onlinelibrary.wiley.com/doi/10.1002/eap.1606/full</a>
 </li>
@@ -81,6 +81,7 @@
 <li>Thorson, J.T., Maureaud, A.A., Frelat, R., Mérigot, B., Bigman, J.S., Friedman, S.T., Palomares, M.L.D., Pinsky, M.L., Price, S.A., Wainwright, P., 2023. Identifying direct and indirect associations among traits by merging phylogenetic comparative methods and structural equation models. Methods Ecol. Evol. n/a. <a href="https://doi.org/10.1111/2041-210X.14076" class="external-link uri">https://doi.org/10.1111/2041-210X.14076</a>
 </li>
 </ol>
+</div>
 </div>
 
   </main><aside class="col-md-3"><div class="license">
@@ -102,7 +103,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Dan G <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Dan G <br><small class="roles"> Author, maintainer </small>   </li>
 </ul>
 </div>
 
@@ -122,7 +123,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>
